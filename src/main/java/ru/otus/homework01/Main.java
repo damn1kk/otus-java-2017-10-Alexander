@@ -23,12 +23,6 @@ public class Main {
         try {
             String html = IOUtils.toString(in, (String) null);
             Document doc = Jsoup.parse(html);
-/*
-
-            doc.charset(StandardCharsets.UTF_8);
-            doc.outputSettings().charset(StandardCharsets.UTF_8);
-            doc.outputSettings().charset().forName("UTF-8");
-*/
 
             Element allLessons = doc.select("div.lessons").first();
             Elements allLinks = allLessons.select("a.lessons__item");

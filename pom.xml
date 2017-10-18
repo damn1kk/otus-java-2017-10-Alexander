@@ -98,19 +98,27 @@
                     <obfuscate>true</obfuscate>
                     <injar>${project.build.finalName}.jar</injar>
                     <outjar>${project.build.finalName}-small.jar</outjar>
+                    <includeDependency>true</includeDependency>
                     <outputDirectory>${project.build.directory}</outputDirectory>
-                    <proguardInclude>${basedir}/proguard.conf</proguardInclude>
                     <options>
-                        <option>-allowaccessmodification</option>
+                        <option>-useuniqueclassmembernames</option>
                         <option>-overloadaggressively</option>
+                        <option>-flattenpackagehierarchy 'xz' </option>
+                        <option>-allowaccessmodification</option>
                         <option>-dontnote org.jsoup.**</option>
                         <option>-dontnote org.apache.commons.io.**</option>
-                        <option>-keep public class ru.otus.homework01.Main  {
-                            public static void main(java.lang.String[]); }</option>
+                        <option>-keepclasseswithmembers  public class ru.otus.homework01.Main  {
+                            public static void main(java.lang.String[]);
+                            }</option>
+                        <option>-keep public class org.jsoup.nodes.Document {*;}</option>
+                        <option>-keep enum org.jsoup.Connection$** {
+                                **[] $VALUES;
+                                public * ;
+                            }</option>
+
                     </options>
                     <libs>
-                        <lib>${java.home}/lib/rt.jar</lib>
-                        <!--lib>${java.home}/lib/jsse.jar</lib-->
+                        <lib>${java.home}\lib\rt.jar</lib>
                     </libs>
                 </configuration>
 
