@@ -7,42 +7,50 @@ public class Main {
     public static void main(String[] args) {
 
         SizeOf objectSizeOf = new SizeOf(Object.class);
-        objectSizeOf.sizeOf();
+        System.out.println(objectSizeOf.toString());
 
-        /*SizeOf shortSizeOf = new SizeOf(Short.class);
-        shortSizeOf.sizeOf();
+        SizeOf shortSizeOf = new SizeOf(Short.class);
+        System.out.println(shortSizeOf.toString());
 
         SizeOf integerSizeOf = new SizeOf(Integer.class);
-        integerSizeOf.sizeOf();
+        System.out.println(integerSizeOf.toString());
 
         SizeOf longSizeOf = new SizeOf(Long.class);
-        longSizeOf.sizeOf();
+        System.out.println(longSizeOf.toString());
+
+        System.out.println("-----------------------");
 
         SizeOf floatSizeOf = new SizeOf(Float.class);
-        floatSizeOf.sizeOf();
+        System.out.println(floatSizeOf.toString());
 
         SizeOf doubleSizeOf = new SizeOf(Double.class);
-        doubleSizeOf.sizeOf();*/
+        System.out.println(doubleSizeOf.toString());
 
         SizeOf pureStringSizeOf = new SizeOf(String.class);
-        pureStringSizeOf.sizeOf();
+        System.out.println(pureStringSizeOf.toString());
+
+        System.out.println("-----------------------");
 
         SizeOf stringSizeOf;
         for(int i = 0; i < 10; i++){
             stringSizeOf = new SizeOf(String.class, i);
-            stringSizeOf.sizeOf();
+            System.out.println(stringSizeOf.toString());
         }
+
+        System.out.println("-----------------------");
 
         SizeOf arrayListSizeOf;
         for(int i = 0; i < 10; i++){
             arrayListSizeOf = new SizeOf(ArrayList.class, i);
-            arrayListSizeOf.sizeOf();
+            System.out.println(arrayListSizeOf.toString());
         }
+
+        System.out.println("-----------------------");
 
         SizeOf hashSetSizeOf;
         for(int i = 0; i < 10; i++){
             hashSetSizeOf = new SizeOf(HashSet.class, i);
-            hashSetSizeOf.sizeOf();
+            System.out.println(hashSetSizeOf.toString());
         }
 
     }

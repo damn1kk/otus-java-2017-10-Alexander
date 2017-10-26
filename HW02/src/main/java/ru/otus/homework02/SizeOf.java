@@ -1,42 +1,42 @@
 package ru.otus.homework02;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 public class SizeOf {
     private final Class type;
     private final Runtime runtime = Runtime.getRuntime();
-    private static final int COUNT = 1_000;
+    private static final int COUNT = 500;
     private int lengthOfObject = 0;
     private final boolean hasLength;
+    private ObjectGenerator objectGenerator;
 
     public SizeOf(Class type) {
         this.type = type;
         hasLength = false;
+        this.objectGenerator = new ObjectGenerator(type);
     }
 
     public SizeOf(Class type, int length){
         this.type = type;
-        this.lengthOfObject = length;
         hasLength = true;
+        this.lengthOfObject = length;
+        this.objectGenerator = new ObjectGenerator(type, length);
     }
 
     public long sizeOf(){
         usedMemory();
-        System.gc();
+        gc();
 
         Object[] array = new Object[COUNT];
 
-        System.gc();
+        gc();
         long heapBefore = usedMemory();
 
-        for(int i = -3; i < COUNT; i++){
+        for(int i = -10; i < COUNT; i++){
             Object object = null;
 
             if(hasLength){
-                object = createObject(i, lengthOfObject);
+                object = objectGenerator.createObject();
             }else {
-                object = createObject(i);
+                object = objectGenerator.createObject(i);
             }
 
             if(i < 0){
@@ -47,91 +47,38 @@ public class SizeOf {
                 array[i] = object;
             }
         }
-        System.gc();
+        gc();
         long heapAfter = usedMemory();
 
         long size = (heapAfter - heapBefore)/COUNT;
-        if(hasLength){
-            System.out.println("size of " + type.getName() + " with length " + lengthOfObject + " is " + size + " bytes");
-        }else {
-            System.out.println("size of " + type.getName() + " is " + size + " bytes");
-        }
         return size;
-    }
-
-    private Object createObject(int i){
-        if(type.isInstance(new Object())){
-            return new Object();
-        }
-
-        if(type.isInstance(new Short((short)i))){
-            return new Short((short)i);
-        }
-
-        if(type.isInstance(new Integer(i))){
-            return new Integer(i);
-        }
-
-        if(type.isInstance(new Long(i))){
-            return new Long(i);
-        }
-
-        if(type.isInstance(new Float(i))){
-            return new Float(i);
-        }
-
-        if(type.isInstance(new Double(i))){
-            return new Double(i);
-        }
-
-        if(type.isInstance(new String(" "))){
-            return new String(" ");
-        }
-
-        return null;
-    }
-
-    private Object createObject(int i, int length){
-        if(type.isInstance(new String())){
-            return createString(length);
-        }
-
-        if(type.isInstance(new ArrayList())){
-            return createArrayList(length);
-        }
-
-        if(type.isInstance(new HashSet())){
-            return createHashSet(length);
-        }
-
-        return null;
-    }
-
-    private String createString(int length){
-        char[] charArray = new char[length];
-        for(int i = 0; i < length; i++){
-            charArray[i] = (char)i;
-        }
-        return new String(charArray);
-    }
-
-    private ArrayList createArrayList(int length){
-        ArrayList newArrayList = new ArrayList();
-        for(int i = 0; i < length; i++){
-            newArrayList.add(i);
-        }
-        return newArrayList;
-    }
-
-    private HashSet createHashSet(int length){
-        HashSet newHashSet = new HashSet();
-        for(int i = 0; i < length; i++){
-            newHashSet.add(i);
-        }
-        return newHashSet;
     }
 
     private long usedMemory(){
         return runtime.totalMemory() - runtime.freeMemory();
+    }
+
+    private void gc(){
+        long heap1, heap2;
+        heap1 = usedMemory();
+        heap2 = Long.MAX_VALUE;
+        int i = 0, count = 10;
+        while(heap1 < heap2 || i < count){
+            runtime.runFinalization();
+            runtime.gc();
+            i++;
+
+            heap2 = heap1;
+            heap1 = usedMemory();
+        }
+    }
+
+    @Override
+    public String toString(){
+        if(hasLength){
+            return "size of " + this.type.getName() + " with length " + lengthOfObject + " is " + sizeOf() + " bytes";
+        }else{
+            return "size of " + this.type.getName() + " is " + sizeOf() + " bytes";
+        }
     }
 }
