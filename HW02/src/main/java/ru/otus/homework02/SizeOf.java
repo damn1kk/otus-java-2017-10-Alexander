@@ -3,7 +3,7 @@ package ru.otus.homework02;
 public class SizeOf {
     private final Class type;
     private final Runtime runtime = Runtime.getRuntime();
-    private static final int COUNT = 500;
+    private static final int COUNT = 10_000;
     private int lengthOfObject = 0;
     private final boolean hasLength;
     private ObjectGenerator objectGenerator;
@@ -51,6 +51,7 @@ public class SizeOf {
         long heapAfter = usedMemory();
 
         long size = (heapAfter - heapBefore)/COUNT;
+        Object obj = array[0];
         return size;
     }
 
