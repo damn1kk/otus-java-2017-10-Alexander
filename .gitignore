@@ -2,4 +2,7 @@
 **/.idea
 **/target
 **.class
+**.current
+**.txt
+**.hprof
 

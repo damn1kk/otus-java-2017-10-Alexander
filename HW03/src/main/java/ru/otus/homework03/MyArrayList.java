@@ -331,7 +331,7 @@ public class MyArrayList<E> implements List<E> {
             position++;
         }
     }
-    
+
     //----------------------------------------this methods are not supported:
 
     @Override
