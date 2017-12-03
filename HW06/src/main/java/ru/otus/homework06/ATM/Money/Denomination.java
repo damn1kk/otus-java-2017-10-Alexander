@@ -1,7 +1,5 @@
 package ru.otus.homework06.ATM.Money;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public enum Denomination {
     ONE(1),
@@ -22,16 +20,16 @@ public enum Denomination {
         this.cost = cost;
     }
 
-    private static Map<Denomination, Integer> map = new HashMap<>();
+    /*private static Map<Denomination, Integer> map = new HashMap<>();
 
     static{
         for(Denomination denomination : Denomination.values()){
             map.put(denomination, denomination.cost);
         }
-    }
+    }*/
 
     public int getCost(){
-        return map.get(this);
+        return cost;
     }
 
 
