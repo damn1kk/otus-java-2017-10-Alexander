@@ -1,4 +1,4 @@
-package ru.otus.homework06.ATM.Money;
+package ru.otus.homework07.ATM.Money;
 
 
 public enum Denomination {
