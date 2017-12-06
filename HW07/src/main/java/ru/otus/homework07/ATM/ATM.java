@@ -8,8 +8,13 @@ public class ATM {
     private Cash remainingBalance;
     private ATMState savedState;
 
-    public ATM() {
+    public ATM()  throws CashException{
         remainingBalance = new Cash();
+        saveATMState();
+    }
+
+    public ATM(Cash startingCash) throws CashException{
+        this.remainingBalance = startingCash;
         saveATMState();
     }
 
@@ -70,7 +75,7 @@ public class ATM {
         }
     }
 
-    public void saveATMState(){
+    public void saveATMState() throws CashException{
         savedState = new ATMState(remainingBalance);
     }
 
@@ -85,7 +90,7 @@ public class ATM {
     private class ATMState{
         private final Cash savedBalance;
 
-        private ATMState(Cash remainingBalance){
+        private ATMState(Cash remainingBalance) throws CashException{
             this.savedBalance = new Cash(remainingBalance);
         }
 

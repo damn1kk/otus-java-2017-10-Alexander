@@ -19,7 +19,12 @@ public class ATMTest {
 
     @Before
     public void initEmptyATM(){
-        atm = new ATM();
+        try {
+            atm = new ATM();
+        }catch(CashException ex){
+            System.err.println("Can not create ATM");
+            ex.printStackTrace();
+        }
     }
 
     @Test
@@ -69,4 +74,6 @@ public class ATMTest {
 
         Cash takenCash = atm.withdrawal(345);
     }
+
+
 }

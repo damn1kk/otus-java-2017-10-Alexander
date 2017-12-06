@@ -12,12 +12,15 @@ public class Cash {
     }
 
     public Cash(long cost) throws CashException {
+        if(cost < 0){
+            throw new CashException("Can not create Cash with negative cost");
+        }
         Cash tempCash = new Cash(makeChangeCostToBanknotesForPerfectChange(cost));
         this.banknotes = tempCash.getBanknotes();
         this.cost = tempCash.getCost();
     }
 
-    public Cash(Cash otherCash){
+    public Cash(Cash otherCash) throws CashException{
         banknotes = new HashMap<>(otherCash.getBanknotes());
         cost = otherCash.getCost();
     }
