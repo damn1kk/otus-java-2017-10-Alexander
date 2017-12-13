@@ -21,24 +21,24 @@ public class Main {
                 new SimpleObject[]{simpleObject, secondObject, thirdObject}
                 );
 
+        ToJSONParser parser = new SimpleToJSONParser();
+        Gson gson = new Gson();
+        String json = parser.parseObjectToJSONString(objectWithArray);
+        String json2 = gson.toJson(objectWithArray);
+        System.out.println("JSON after my parser:\n " + json);
+        System.out.println("JSON after gson parser:\n " + json2);
+
+        System.out.println();
 
         Map<String, SimpleObject> myMap = new HashMap<>();
         myMap.put("xz", simpleObject);
         myMap.put("da", secondObject);
         ObjectWithMap objWithMap = new ObjectWithMap(myMap);
+        json = parser.parseObjectToJSONString(objWithMap);
+        json2 = gson.toJson(objWithMap);
+        System.out.println("JSON after my parser:\n " + json);
+        System.out.println("JSON after gson parser:\n " + json2);
 
-        List<SimpleObject> myList = new ArrayList<>();
-        myList.add(simpleObject);
-        myList.add(secondObject);
-        myList.add(thirdObject);
-        ObjectWithCollection<SimpleObject> objWithCollection = new ObjectWithCollection<>(myList);
-
-        ToJSONParser parser = new SimpleToJSONParser();
-        Gson gson = new Gson();
-        String json = parser.parseObjectToJSONString(objWithCollection);
-        String json2 = gson.toJson(objWithCollection);
-        System.out.println(json);
-        System.out.println(json2);
 
 
     }
