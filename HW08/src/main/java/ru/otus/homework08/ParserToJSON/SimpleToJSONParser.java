@@ -22,15 +22,14 @@ public class SimpleToJSONParser implements ToJSONParser {
 
         for (Field f : fields) {
             String fieldName = f.getName();
-            Object fieldValue = null;
             try{
-                fieldValue = ReflectionHelper.getFieldValue(f, object);
-                fieldValue = handleObjectAccordingToType(fieldValue);
+                Object fieldValue = ReflectionHelper.getFieldValue(f, object);
+                Object jsonFieldValue  = handleObjectAccordingToType(fieldValue);
+                jsonObject.put(fieldName, jsonFieldValue );
             } catch (IllegalAccessException ex) {
                 ex.printStackTrace();
                 System.err.println("Can not get field value");
             }
-            jsonObject.put(fieldName, fieldValue);
         }
         return jsonObject;
     }
