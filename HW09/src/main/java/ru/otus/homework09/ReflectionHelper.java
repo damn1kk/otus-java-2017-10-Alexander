@@ -39,7 +39,6 @@ public class ReflectionHelper {
         Field[] fields = ReflectionHelper.getAllFields(clazz);
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < fields.length; i++){
-
             Object fieldValue;
             try {
                 fieldValue = getFieldValue(fields[i], user);
@@ -56,10 +55,9 @@ public class ReflectionHelper {
                 fieldValueToString = fieldValue.toString();
             }
 
-            if(i + 1 == fields.length){
-                sb.append(fieldValueToString).append(");");
-            }else{
-                sb.append(fieldValueToString).append(", ");
+            sb.append(fieldValueToString);
+            if(i + 1 != fields.length){
+                sb.append(", ");
             }
         }
         return sb.toString();

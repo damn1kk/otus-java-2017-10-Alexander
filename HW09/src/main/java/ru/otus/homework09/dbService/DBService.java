@@ -19,7 +19,7 @@ public class DBService implements AutoCloseable {
     private static final String DROP_TABLE = "DROP TABLE " + TABLE_NAME;
 
     private static final String GET_DATA_BY_ID = "SELECT * FROM " + TABLE_NAME + " WHERE id=";
-    private static final String SAVE_DATA = "INSERT INTO " + TABLE_NAME + " VALUES(";
+    private static final String SAVE_DATA = "INSERT INTO %s VALUES (%s);";
     private static final String DELETE_BY_ID = "DELETE FROM " + TABLE_NAME + " WHERE id=";
 
     Connection connection;
@@ -41,7 +41,7 @@ public class DBService implements AutoCloseable {
     public <T extends DataSet> void save(T user) throws SQLException{
 
         String fieldsToString = ReflectionHelper.getFieldsValueToString(user);
-        String newUpdateQuery = SAVE_DATA + fieldsToString;
+        String newUpdateQuery = String.format(SAVE_DATA, TABLE_NAME, fieldsToString);
 
         executor.execUpdate(newUpdateQuery);
     }
