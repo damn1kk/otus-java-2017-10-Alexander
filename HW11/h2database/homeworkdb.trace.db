@@ -1,0 +1,787 @@
+2018-01-04 14:11:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Параметр "#1" не установлен
+Parameter "#1" is not set; SQL statement:
+INSERT INTO USER VALUES((?), (?), (?)); [90012-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:81)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:164)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:100)
+	at org.h2.command.Command.executeUpdate(Command.java:260)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:192)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:43)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:17)
+2018-01-04 14:13:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Нет данных
+No data is available [2000-196]
+2018-01-05 20:32:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Нет данных
+No data is available [2000-196]
+2018-01-05 20:33:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "ALEX" не найден
+Column "ALEX" not found; SQL statement:
+INSERT INTO USER VALUES((1), (Alex), (31)); [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:43)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:16)
+2018-01-05 20:33:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Нет данных
+No data is available [2000-196]
+2018-01-05 20:33:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "ALEX" не найден
+Column "ALEX" not found; SQL statement:
+INSERT INTO USER VALUES((1), (Alex), (31)); [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:43)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:16)
+2018-01-05 20:35:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "ALEX" не найден
+Column "ALEX" not found; SQL statement:
+INSERT INTO USER (id, name, age) VALUES((1), (Alex), (31)); [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:43)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:16)
+2018-01-05 20:36:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "ALEX" не найден
+Column "ALEX" not found; SQL statement:
+INSERT INTO USER (id, name, age) VALUES(1, Alex, 31); [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:43)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:16)
+2018-01-05 20:36:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "ALEX" не найден
+Column "ALEX" not found; SQL statement:
+INSERT INTO USER (id, name, age) VALUES (1, Alex, 31); [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:43)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:16)
+2018-01-05 20:37:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "ALEX" не найден
+Column "ALEX" not found; SQL statement:
+INSERT INTO USER (id, name, age) VALUES (1, Alex, 31); [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:44)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:16)
+2018-01-05 20:38:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "ALEX" не найден
+Column "ALEX" not found; SQL statement:
+INSERT INTO USER (id, name, age) VALUES (1, Alex, 31); [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:44)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:16)
+2018-01-05 20:39:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "ALEX" не найден
+Column "ALEX" not found; SQL statement:
+INSERT INTO USER (id, name, age) VALUES (1, Alex, 31); [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at ru.otus.homework10.executor.MyExecutor.execUpdate(MyExecutor.java:32)
+	at ru.otus.homework10.dao.UserDataSetDAO.insertUser(UserDataSetDAO.java:44)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:69)
+	at ru.otus.homework10.dbService.UserDataSetDBService.save(UserDataSetDBService.java:11)
+	at ru.otus.homework10.Main.main(Main.java:16)
+2018-01-05 20:55:21 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at ru.otus.homework10.dbService.ConnectionHelper.getH2Connection(ConnectionHelper.java:37)
+	at ru.otus.homework10.Main.main(Main.java:12)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 25 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 20 more
+2018-01-05 20:59:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Нет данных
+No data is available [2000-196]
+2018-01-05 20:59:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USER" не найдена
+Table "USER" not found; SQL statement:
+DROP TABLE USER [42102-196]
+2018-01-05 21:01:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USER" не найдена
+Table "USER" not found; SQL statement:
+DROP TABLE USER [42102-196]
+2018-01-05 21:03:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USER" не найдена
+Table "USER" not found; SQL statement:
+DROP TABLE USER [42102-196]
+2018-01-05 21:03:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USER" не найдена
+Table "USER" not found; SQL statement:
+DROP TABLE USER [42102-196]
+2018-01-05 21:04:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "DROP TABLE IF EXISTUSER[*]"; ожидалось "EXISTS"
+Syntax error in SQL statement "DROP TABLE IF EXISTUSER[*]"; expected "EXISTS"; SQL statement:
+DROP TABLE IF EXISTUSER [42001-196]
+2018-01-05 21:04:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "DROP TABLE IF EXISTSUSER[*]"; ожидалось "EXISTS"
+Syntax error in SQL statement "DROP TABLE IF EXISTSUSER[*]"; expected "EXISTS"; SQL statement:
+DROP TABLE IF EXISTSUSER [42001-196]
+2018-01-05 21:06:26 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at ru.otus.homework10.dbService.ConnectionHelper.getH2Connection(ConnectionHelper.java:37)
+	at ru.otus.homework10.Main.main(Main.java:12)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 25 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 20 more
+2018-01-05 22:08:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "INTO" не найдена
+Table "INTO" not found; SQL statement:
+UPDATE INTO USERSET id = 2, name = 'ALESHA', age = 25 WHERE id = 2; [42102-196]
+2018-01-05 22:09:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "INTO" не найдена
+Table "INTO" not found; SQL statement:
+UPDATE INTO USER SET id = 2, name = 'ALESHA', age = 25 WHERE id = 2; [42102-196]
+2018-01-05 22:21:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "USER" не найдена
+Table "USER" not found; SQL statement:
+SELECT * FROM USER; [42102-196]
+2018-01-08 16:43:43 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38)
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:58)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.addConnections(PooledConnections.java:123)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:42)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:20)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections$Builder.build(PooledConnections.java:161)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildPool(DriverManagerConnectionProviderImpl.java:109)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure(DriverManagerConnectionProviderImpl.java:72)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.buildJdbcConnectionAccess(JdbcEnvironmentInitiator.java:145)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:66)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:88)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:259)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:233)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:51)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.handleTypes(MetadataBuildingProcess.java:352)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:111)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:418)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:87)
+	at org.hibernate.boot.MetadataSources.buildMetadata(MetadataSources.java:179)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.buildSessionFactory(HibernateSessionFactory.java:19)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.<clinit>(HibernateSessionFactory.java:12)
+	at ru.otus.homework10.dbService.hibernateService.HibernateUserDBService.<init>(HibernateUserDBService.java:28)
+	at ru.otus.homework10.Main.main(Main.java:10)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 53 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 48 more
+2018-01-08 19:19:44 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38)
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:58)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.addConnections(PooledConnections.java:123)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:42)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:20)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections$Builder.build(PooledConnections.java:161)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildPool(DriverManagerConnectionProviderImpl.java:109)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure(DriverManagerConnectionProviderImpl.java:72)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.buildJdbcConnectionAccess(JdbcEnvironmentInitiator.java:145)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:66)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:88)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:259)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:233)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:51)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.handleTypes(MetadataBuildingProcess.java:352)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:111)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:418)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:87)
+	at org.hibernate.boot.MetadataSources.buildMetadata(MetadataSources.java:179)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.buildSessionFactory(HibernateSessionFactory.java:19)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.<clinit>(HibernateSessionFactory.java:12)
+	at ru.otus.homework10.dbService.hibernateService.HibernateUserDBService.<init>(HibernateUserDBService.java:29)
+	at ru.otus.homework10.Main.main(Main.java:27)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 53 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 48 more
+2018-01-08 19:42:06 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38)
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:58)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.addConnections(PooledConnections.java:123)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:42)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:20)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections$Builder.build(PooledConnections.java:161)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildPool(DriverManagerConnectionProviderImpl.java:109)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure(DriverManagerConnectionProviderImpl.java:72)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.buildJdbcConnectionAccess(JdbcEnvironmentInitiator.java:145)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:66)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:88)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:259)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:233)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:51)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.handleTypes(MetadataBuildingProcess.java:352)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:111)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:418)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:87)
+	at org.hibernate.boot.MetadataSources.buildMetadata(MetadataSources.java:179)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.buildSessionFactory(HibernateSessionFactory.java:19)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.<clinit>(HibernateSessionFactory.java:12)
+	at ru.otus.homework10.dbService.hibernateService.HibernateUserDBService.<init>(HibernateUserDBService.java:29)
+	at ru.otus.homework10.Main.main(Main.java:27)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 53 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 48 more
+2018-01-09 22:37:19 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38)
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:58)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.addConnections(PooledConnections.java:123)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:42)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:20)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections$Builder.build(PooledConnections.java:161)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildPool(DriverManagerConnectionProviderImpl.java:109)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure(DriverManagerConnectionProviderImpl.java:72)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.buildJdbcConnectionAccess(JdbcEnvironmentInitiator.java:145)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:66)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:88)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:259)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:233)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:51)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.handleTypes(MetadataBuildingProcess.java:352)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:111)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:418)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:87)
+	at org.hibernate.boot.MetadataSources.buildMetadata(MetadataSources.java:179)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.buildSessionFactory(HibernateSessionFactory.java:19)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.<clinit>(HibernateSessionFactory.java:12)
+	at ru.otus.homework10.dbService.hibernateService.HibernateUserDBService.<init>(HibernateUserDBService.java:29)
+	at ru.otus.homework10.Main.main(Main.java:27)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 53 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 48 more
+2018-01-09 23:04:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "ADDRES" не найдена
+Table "ADDRES" not found; SQL statement:
+drop table addres [42102-195]
+2018-01-09 23:25:28 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38)
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:58)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.addConnections(PooledConnections.java:123)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:42)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:20)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections$Builder.build(PooledConnections.java:161)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildPool(DriverManagerConnectionProviderImpl.java:109)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure(DriverManagerConnectionProviderImpl.java:72)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.buildJdbcConnectionAccess(JdbcEnvironmentInitiator.java:145)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:66)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:88)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:259)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:233)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:51)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.handleTypes(MetadataBuildingProcess.java:352)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:111)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:418)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:87)
+	at org.hibernate.boot.MetadataSources.buildMetadata(MetadataSources.java:179)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.buildSessionFactory(HibernateSessionFactory.java:19)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.<clinit>(HibernateSessionFactory.java:12)
+	at ru.otus.homework10.dbService.hibernateService.HibernateUserDBService.<init>(HibernateUserDBService.java:26)
+	at ru.otus.homework10.Main.main(Main.java:27)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 53 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 48 more
+2018-01-10 19:35:00 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38)
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:58)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.addConnections(PooledConnections.java:123)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:42)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:20)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections$Builder.build(PooledConnections.java:161)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildPool(DriverManagerConnectionProviderImpl.java:109)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure(DriverManagerConnectionProviderImpl.java:72)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.buildJdbcConnectionAccess(JdbcEnvironmentInitiator.java:145)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:66)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:88)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:259)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:233)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:51)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.handleTypes(MetadataBuildingProcess.java:352)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:111)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:418)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:87)
+	at org.hibernate.boot.MetadataSources.buildMetadata(MetadataSources.java:179)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.buildSessionFactory(HibernateSessionFactory.java:19)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.<clinit>(HibernateSessionFactory.java:12)
+	at ru.otus.homework10.dbService.hibernateService.HibernateUserDBService.<init>(HibernateUserDBService.java:26)
+	at ru.otus.homework10.Main.main(Main.java:28)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 53 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 48 more
+2018-01-10 19:38:08 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2476)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:354)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:116)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:100)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38)
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:58)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.addConnections(PooledConnections.java:123)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:42)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections.<init>(PooledConnections.java:20)
+	at org.hibernate.engine.jdbc.connections.internal.PooledConnections$Builder.build(PooledConnections.java:161)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildPool(DriverManagerConnectionProviderImpl.java:109)
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure(DriverManagerConnectionProviderImpl.java:72)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.buildJdbcConnectionAccess(JdbcEnvironmentInitiator.java:145)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:66)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:88)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:259)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:233)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:51)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:242)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:210)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.handleTypes(MetadataBuildingProcess.java:352)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:111)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:418)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:87)
+	at org.hibernate.boot.MetadataSources.buildMetadata(MetadataSources.java:179)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.buildSessionFactory(HibernateSessionFactory.java:19)
+	at ru.otus.homework10.dbService.hibernateService.utils.HibernateSessionFactory.<clinit>(HibernateSessionFactory.java:12)
+	at ru.otus.homework10.dbService.hibernateService.HibernateUserDBService.<init>(HibernateUserDBService.java:26)
+	at ru.otus.homework10.Main.main(Main.java:28)
+Caused by: org.h2.jdbc.JdbcSQLException: Внутренняя ошибка: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]" [50000-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 53 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/IdeaProjects/otus/Homework/HW10/h2database/homeworkdb.mv.db [1.4.196/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 48 more
+2018-01-10 21:21:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "DROP ALL TABLES[*] "; ожидалось "OBJECTS"
+Syntax error in SQL statement "DROP ALL TABLES[*] "; expected "OBJECTS"; SQL statement:
+drop all tables [42001-195]
+2018-01-10 21:21:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "DROP TABLE [*]"; ожидалось "identifier"
+Syntax error in SQL statement "DROP TABLE [*]"; expected "identifier"; SQL statement:
+drop table [42001-195]
+2018-01-10 21:21:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "DROP *[*] 
+
+TABLE "; ожидалось "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE"
+Syntax error in SQL statement "DROP *[*] 
+
+TABLE "; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE"; SQL statement:
+drop * 
+
+table [42001-195]
+2018-01-10 21:21:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "DROP TABLE *[*] "; ожидалось "identifier"
+Syntax error in SQL statement "DROP TABLE *[*] "; expected "identifier"; SQL statement:
+drop table * [42001-195]
+2018-01-10 23:18:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ошибка преобразования данных при конвертации "Ivan"
+Data conversion error converting "Ivan" [22018-196]
+2018-01-10 23:19:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Ошибка преобразования данных при конвертации "Ivan"
+Data conversion error converting "Ivan" [22018-196]
