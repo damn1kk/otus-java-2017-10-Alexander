@@ -6,7 +6,7 @@
 </head>
 <body>
     <p></p>
-    <div class = "launcher">
+    <div class = "launcher" align="center">
         <form id = "launcherForm" action="/statistic">
             <input type = "checkbox" name = "check" id = "launcher_check_box"/>Generate some query to database!
         </form>
@@ -14,7 +14,7 @@
 
     <hr>
 
-    <div class = "data">
+    <div class = "data" align="center">
         <table border="1">
             <tbody align="center">
             <tr>
@@ -29,15 +29,14 @@
         </table>
     </div>
     <p></p>
-    <div>
+    <div class="buttons" align="center">
         <input type="submit" id = "refresh_button" value = "Refresh Statistic"/>
-    </div>
-
     <p>
         <form action="/index.html">
-        <input type="submit" value="Go to main page"/>
+            <input type="submit" value="Go to main page"/>
         </form>
     </p>
+    </div>
 
     <script>
         var checkbox = document.getElementById("launcher_check_box");
