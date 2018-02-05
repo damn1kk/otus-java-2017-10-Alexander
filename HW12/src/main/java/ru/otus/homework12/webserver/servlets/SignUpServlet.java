@@ -25,23 +25,29 @@ public class SignUpServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=utf-8");
 
-        DBService<PasswordDataSet, String> dbService = new HibernatePasswordDBService();
-        try{
-            if(dbService.findById(login) != null){
-                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                resp.sendRedirect("./already_exists_username.html");
-            }else{
-                dbService.save(new PasswordDataSet(login, password));
+        if(login.length() == 0 || password.length() == 0){
+            PrintWriter writer = resp.getWriter();
+            writer.println("You entered empty login or empty password");
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }else {
+            DBService<PasswordDataSet, String> dbService = new HibernatePasswordDBService();
+            try {
+                if (dbService.findById(login) != null) {
+                    resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    resp.sendRedirect("./already_exists_username.html");
+                } else {
+                    dbService.save(new PasswordDataSet(login, password));
 
-                PrintWriter writer = resp.getWriter();
-                Map<String, Object> variables = new HashMap<>();
-                variables.put("login", login);
-                writer.println(PageGenerator.instance().generatePage(REGISTERED_PAGE_TEMPLATE, variables));
-                resp.setStatus(HttpServletResponse.SC_OK);
+                    PrintWriter writer = resp.getWriter();
+                    Map<String, Object> variables = new HashMap<>();
+                    variables.put("login", login);
+                    writer.println(PageGenerator.instance().generatePage(REGISTERED_PAGE_TEMPLATE, variables));
+                    resp.setStatus(HttpServletResponse.SC_OK);
+                }
+            } catch (DBException e) {
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                e.printStackTrace();
             }
-        }catch(DBException e){
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            e.printStackTrace();
         }
     }
 }
