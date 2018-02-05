@@ -20,24 +20,27 @@ public class SignInServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         resp.setContentType("text/html;charset=utf-8");
-        resp.setStatus(HttpServletResponse.SC_OK);
 
         DBService<PasswordDataSet, String> dbService = new HibernatePasswordDBService();
         try{
             PasswordDataSet user = dbService.findById(login);
             if(user == null){
+                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 resp.sendRedirect("./username_does_not_exist.html");
             }else{
                 PrintWriter writer = resp.getWriter();
                 if(user.getPassword() != null && user.getPassword().equals(password)) {
+                    resp.setStatus(HttpServletResponse.SC_OK);
                     resp.sendRedirect("./statistic");
                 }else{
+                    resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     writer.println("WRONG PASSWORD");
                 }
 
             }
         }catch (DBException e){
             e.printStackTrace();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }
