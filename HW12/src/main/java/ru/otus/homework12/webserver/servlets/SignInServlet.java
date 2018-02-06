@@ -5,11 +5,11 @@ import ru.otus.homework12.database.dbService.DBException;
 import ru.otus.homework12.database.dbService.DBService;
 import ru.otus.homework12.database.dbService.hibernateService.HibernatePasswordDBService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -30,6 +30,8 @@ public class SignInServlet extends HttpServlet {
             }else{
                 PrintWriter writer = resp.getWriter();
                 if(user.getPassword() != null && user.getPassword().equals(password)) {
+                    HttpSession session = req.getSession();
+                    session.setAttribute("name", login);
                     resp.setStatus(HttpServletResponse.SC_OK);
                     resp.sendRedirect("./statistic");
                 }else{

@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -15,19 +16,27 @@ import java.util.Map;
 public class StatisticServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        QueryGenerator queryGenerator = QueryGenerator.instance();
-        String generatorLauncher = req.getParameter("check");
-        if(generatorLauncher != null){
-            if(generatorLauncher.equals("on")){
-                if(!queryGenerator.isStarted()) {
-                    new Thread(queryGenerator).start();
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        HttpSession session = req.getSession(false);
+        if(session != null) {
+            QueryGenerator queryGenerator = QueryGenerator.instance();
+            String generatorLauncher = req.getParameter("check");
+            if (generatorLauncher != null) {
+                if (generatorLauncher.equals("on")) {
+                    if (!queryGenerator.isStarted()) {
+                        new Thread(queryGenerator).start();
+                    }
                 }
+            } else {
+                queryGenerator.stop();
             }
+            sendResponse(queryGenerator, resp);
         }else{
-            queryGenerator.stop();
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            out.println("Please login first");
+            out.println("<a href=/index.html> BACK TO MAIN </a>");
         }
-        sendResponse(queryGenerator, resp);
-
     }
 
     private void sendResponse(QueryGenerator queryGenerator, HttpServletResponse resp) throws IOException{

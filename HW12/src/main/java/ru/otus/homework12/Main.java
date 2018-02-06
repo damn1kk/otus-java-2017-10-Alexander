@@ -3,13 +3,9 @@ package ru.otus.homework12;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.server.session.SessionHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
-import ru.otus.homework12.database.dataSet.AddressDataSet;
-import ru.otus.homework12.database.dataSet.PhoneDataSet;
-import ru.otus.homework12.database.dataSet.UserDataSet;
-import ru.otus.homework12.database.dbService.DBException;
-import ru.otus.homework12.database.dbService.DBService;
-import ru.otus.homework12.database.dbService.hibernateService.HibernateCachedUserDBService;
+import ru.otus.homework12.webserver.servlets.LogOutServlet;
 import ru.otus.homework12.webserver.servlets.SignInServlet;
 import ru.otus.homework12.webserver.servlets.SignUpServlet;
 import ru.otus.homework12.webserver.servlets.StatisticServlet;
@@ -19,10 +15,11 @@ public class Main {
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setResourceBase("./html");
 
-        ServletContextHandler servletHandler = new ServletContextHandler();
+        ServletContextHandler servletHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         servletHandler.addServlet(SignInServlet.class, "/signin");
         servletHandler.addServlet(SignUpServlet.class, "/signup");
         servletHandler.addServlet(StatisticServlet.class, "/statistic");
+        servletHandler.addServlet(LogOutServlet.class, "/logout");
 
         Server server = new Server(8090);
         HandlerList handlerList = new HandlerList(resourceHandler, servletHandler);
