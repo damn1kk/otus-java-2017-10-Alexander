@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>statistic for cache</title>
+</head>
+<body>
+    <p></p>
+    <div class = "launcher" align="center">
+        <form id = "launcherForm" action="/statistic">
+            <input type = "checkbox" name = "check" id = "launcher_check_box"/>Generate some query to database!
+        </form>
+    </div>
+
+    <hr>
+
+    <div class = "data" align="center">
+        <table border="1">
+            <tbody align="center">
+            <tr>
+                <td height = "50" width = "50">Hits</td>
+                <td height = "50" width = "50">Misses</td>
+            </tr>
+            <tr>
+                    <td id = "hits" height = "50" width = "50">${hits}</td>
+                <td id = "misses" height = "50" width = "50">${misses}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+    <div class="buttons" align="center">
+        <input type="submit" id = "refresh_button" value = "Refresh Statistic" onClick="refreshPage()"/>
+    <p>
+        <form id = "logout_form" action="/logout">
+            <input id = "logout_button" type="submit" value="Log out"/>
+        </form>
+    </p>
+    </div>
+
+    <script type="text/javascript">
+        var checkbox = document.getElementById("launcher_check_box");
+        var form = document.getElementById("launcherForm");
+        var logout_form = document.getElementById("logout_form");
+        var refresh_button = document.getElementById("refresh_button");
+        var logout_button = document.getElementById("logout_button");
+
+        function refreshPage(){
+            form.submit();
+        }
+
+        checkbox.addEventListener('change', refreshPage);
+        refresh_button.addEventListener('click', refreshPage);
+
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var checkBoxOn = getParameterByName('check');
+        if(checkBoxOn == 'on'){
+            document.getElementById("launcher_check_box").checked = true;
+        }else{
+            document.getElementById("launcher_check_box").checked = false;
+        }
+    </script>
+</body>
+</html>

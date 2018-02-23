@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id = "hibernatePasswordDBService"
+          class = "ru.otus.homework13.database.dbService.hibernateService.HibernatePasswordDBService">
+    </bean>
+
+    <bean id = "cacheService" class="ru.otus.homework13.database.cach.Cache">
+        <constructor-arg type = "int" value = "10"/>
+    </bean>
+
+    <bean id = "hibernateCachedUserService"
+          class = "ru.otus.homework13.database.dbService.hibernateService.HibernateCachedUserService">
+        <constructor-arg ref = "cacheService"/>
+    </bean>
+
+    <bean id = "queryGenerator" class="ru.otus.homework13.database.QueryGenerator">
+        <constructor-arg ref = "hibernateCachedUserService"/>
+    </bean>
+
+</beans>

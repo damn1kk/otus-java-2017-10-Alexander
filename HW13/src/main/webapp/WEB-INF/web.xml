@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app>
+
+    <display-name>Homework13</display-name>
+
+    <listener>
+        <listener-class>
+            ru.otus.homework13.SpringApplicationContextListener
+        </listener-class>
+    </listener>
+
+    <mapping> contextpath="*" </mapping>
+    <servlet>
+        <servlet-name>signUpServlet</servlet-name>
+        <servlet-class>ru.otus.homework13.servlets.SignUpServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>signInServlet</servlet-name>
+        <servlet-class>ru.otus.homework13.servlets.SignInServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>statisticServlet</servlet-name>
+        <servlet-class>ru.otus.homework13.servlets.StatisticServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>logOutServlet</servlet-name>
+        <servlet-class>ru.otus.homework13.servlets.LogOutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>signUpServlet</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>signInServlet</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>statisticServlet</servlet-name>
+        <url-pattern>/statistic</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>logOutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
