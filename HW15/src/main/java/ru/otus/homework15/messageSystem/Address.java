@@ -32,4 +32,9 @@ public class Address {
     public int hashCode() {
         return id.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return getId();
+    }
 }

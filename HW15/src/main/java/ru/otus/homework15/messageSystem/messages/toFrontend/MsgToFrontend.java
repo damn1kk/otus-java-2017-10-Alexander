@@ -1,8 +1,9 @@
-package ru.otus.homework15.messageSystem.messages;
+package ru.otus.homework15.messageSystem.messages.toFrontend;
 
 import ru.otus.homework15.front.FrontendService;
 import ru.otus.homework15.messageSystem.Address;
 import ru.otus.homework15.messageSystem.Addressee;
+import ru.otus.homework15.messageSystem.messages.Message;
 
 public abstract class MsgToFrontend extends Message {
     public MsgToFrontend(Address from, Address to) {
@@ -16,5 +17,5 @@ public abstract class MsgToFrontend extends Message {
         }
     }
 
-    public abstract void exec(FrontendService frontendService);
+    public abstract <T> void exec(FrontendService frontendService);
 }

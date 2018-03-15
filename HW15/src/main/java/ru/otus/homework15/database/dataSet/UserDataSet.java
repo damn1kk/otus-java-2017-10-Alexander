@@ -30,7 +30,7 @@ public class UserDataSet extends DataSet {
     }
 
     public UserDataSet(String name, int age){
-        super(-1);
+        super(-1L);
         this.name = name;
         this.age = age;
     }

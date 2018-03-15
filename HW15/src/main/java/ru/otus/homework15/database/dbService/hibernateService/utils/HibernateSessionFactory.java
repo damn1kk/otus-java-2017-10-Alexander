@@ -9,40 +9,25 @@ import java.util.logging.Logger;
 public class HibernateSessionFactory{
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private static final SessionFactory sessionFactoryToPassword = buildSessionFactoryToPassword();
-    private static final SessionFactory sessionFactoryToUserDataSet = buildSessionFactoryToUserDataSet();
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    private static SessionFactory buildSessionFactoryToUserDataSet(){
+    private static SessionFactory buildSessionFactory(){
         Configuration cfg = new Configuration()
                 .configure("/hibernate.cfg.xml")
                 .addAnnotatedClass(ru.otus.homework15.database.dataSet.UserDataSet.class)
                 .addAnnotatedClass(ru.otus.homework15.database.dataSet.PhoneDataSet.class)
                 .addAnnotatedClass(ru.otus.homework15.database.dataSet.AddressDataSet.class)
+                .addAnnotatedClass(ru.otus.homework15.database.dataSet.PasswordDataSet.class)
                 .setProperty("hibernate.connection.url", "jdbc:h2:mem:/h2database/userdatasetDB");
         return cfg.buildSessionFactory();
     }
 
-    private static SessionFactory buildSessionFactoryToPassword(){
-        Configuration cfg = new Configuration()
-                .configure("/hibernate.cfg.xml")
-                .addAnnotatedClass(ru.otus.homework15.database.dataSet.PasswordDataSet.class)
-                .setProperty("hibernate.connection.url", "jdbc:h2:mem:/h2database/passwordDB");
-        return cfg.buildSessionFactory();
+
+    public static SessionFactory getSessionFactory(){
+        return sessionFactory;
     }
 
-    public static SessionFactory getSessionFactoryToPassword(){
-        return sessionFactoryToPassword;
-    }
-
-    public static SessionFactory getSessionFactoryToUserDataSet(){
-        return sessionFactoryToUserDataSet;
-    }
-
-    public static void closeToUserDataSet() throws IOException {
-        sessionFactoryToUserDataSet.close();
-    }
-
-    public static void closeToPassword() throws IOException{
-        sessionFactoryToPassword.close();
+    public static void closeSessionFactory() throws IOException {
+        sessionFactory.close();
     }
 }

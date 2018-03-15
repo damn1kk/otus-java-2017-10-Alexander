@@ -4,7 +4,7 @@ var historyOfQuery = document.getElementById("historyOfQuery");
 var queryResult = document.getElementById("queryResult");
 
 
-websocket = new WebSocket('ws://localhost:9999/wstest');
+websocket = new WebSocket('ws://localhost:9999/wsserver');
 websocket.onopen = function(data){
     console.log("Connected ");
 }
@@ -17,27 +17,33 @@ websocket.onmessage = function(data){
     console.log("Receive message : " + data.data);
         try{
             var obj = JSON.parse(data.data);
+
             if(obj.typeOfMessage == 'statisticMessage'){
                 cacheHit.innerHTML = obj.cacheHit;
                 cacheMiss.innerHTML = obj.cacheMiss;
+
             }else if(obj.typeOfMessage == 'statusMessage'){
                 if(obj.started == 'true'){
                     checkbox.checked = true;
                 }else{
                     checkbox.checked = false;
                 }
+
             }else if(obj.typeOfMessage == 'newQuery'){
                 var newdiv = document.createElement("div");
                 var timeNow = getCurrentTime();
                 newdiv.innerHTML = '<p>' + timeNow + ": " + obj.query + '</p>';
                 historyOfQuery.appendChild(newdiv);
                 historyOfQuery.appendChild(document.createElement("hr"));
+                historyOfQuery.scrollTop = historyOfQuery.scrollHeight;
+
             }else if(obj.typeOfMessage == 'queryResult'){
                 var newdiv = document.createElement("div");
                 var timeNow = getCurrentTime();
                 newdiv.innerHTML = '<p>' + timeNow + ": " + obj.queryResult + '</p>';
                 queryResult.appendChild(newdiv);
                 queryResult.appendChild(document.createElement("hr"));
+                queryResult.scrollTop = queryResult.scrollHeight;
             }
         }catch(e){}
 }
@@ -49,11 +55,7 @@ function getCurrentTime() {
             ((currentDate.getSeconds() < 10)?"0":"") + currentDate.getSeconds();
 }
 
-var checkbox = document.getElementById("launcher_check_box");
-var initial_value = document.getElementById("initial_value_checkbox").value;
-if(initial_value == 'true'){
-    checkbox.checked = true;
-}
+var checkbox = document.getElementById("launcherCheckBox");
 
 checkbox.addEventListener('change', function(){
     if(websocket){

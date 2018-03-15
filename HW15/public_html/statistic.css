@@ -1,8 +1,9 @@
-.queryoutput{
+.queryOutput{
     width: 500px;
     height: 300px;
     overflow-y: scroll;
     border: 1px solid black;
+    text-align: left;
 }
 
 .left{
@@ -13,4 +14,16 @@
 .right{
     display: inline-block;
     margin: 2px 10px;
+}
+
+.queryButtons{
+    margin: 10px;
+}
+
+.queryButton{
+    margin: 5px;
+}
+
+.logOutButton{
+    margin: 10px;
 }

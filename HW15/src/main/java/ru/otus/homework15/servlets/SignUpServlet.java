@@ -17,25 +17,26 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class SignUpServlet extends HttpServlet {
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     private static final String REGISTERED_PAGE_TEMPLATE = "registered_page.html";
 
-    private DBService<PasswordDataSet, String> dbService;
+    private HibernatePasswordDBService dbService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        //ApplicationContext ac = (ApplicationContext) config.getServletContext().getAttribute("applicationContext");
         WebApplicationContext ac = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
-        this.dbService = (DBService) ac.getBean("hibernatePasswordDBService");
-        //dbService = new HibernatePasswordDBService();
+        this.dbService = (HibernatePasswordDBService) ac.getBean("hibernatePasswordDBService");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
@@ -47,7 +48,7 @@ public class SignUpServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }else {
             try {
-                if (dbService.findById(login) != null) {
+                if (dbService.findPasswordByLogin(login) != null) {
                     resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     resp.sendRedirect("./already_exists_username.html");
                 } else {

@@ -9,6 +9,6 @@ public class HibernateUserDBService extends HibernateDBService<UserDataSet, Long
 
     public HibernateUserDBService(Address address, MessageSystemContext context){
         super(UserDataSet.class, address, context);
-        this.sessionFactory = HibernateSessionFactory.getSessionFactoryToUserDataSet();
+        this.sessionFactory = HibernateSessionFactory.getSessionFactory();
     }
 }

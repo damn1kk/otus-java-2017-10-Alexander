@@ -19,17 +19,14 @@ import java.io.PrintWriter;
 
 public class SignInServlet extends HttpServlet {
 
-    private DBService<PasswordDataSet, String> dbService;
+    private HibernatePasswordDBService dbService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        //ApplicationContext ac = (ApplicationContext) config.getServletContext().getAttribute("applicationContext");
         WebApplicationContext ac = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
-        this.dbService = (DBService) ac.getBean("hibernatePasswordDBService");
-
-        //dbService = new HibernatePasswordDBService();
+        this.dbService = (HibernatePasswordDBService) ac.getBean("hibernatePasswordDBService");
     }
 
     @Override
@@ -40,7 +37,7 @@ public class SignInServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
 
         try{
-            PasswordDataSet user = dbService.findById(login);
+            PasswordDataSet user = dbService.findPasswordByLogin(login);
             if(user == null){
                 resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 resp.sendRedirect("./username_does_not_exist.html");

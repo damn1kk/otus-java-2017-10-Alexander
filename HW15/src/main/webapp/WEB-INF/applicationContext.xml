@@ -8,27 +8,34 @@
     <bean id = "messageSystem" class = "ru.otus.homework15.messageSystem.MessageSystem"></bean>
     <bean id = "messageContext" class = "ru.otus.homework15.MessageSystemContext">
         <constructor-arg ref = "messageSystem"/>
+        <property name = "frontAddress" ref = "frontAddress"/>
+        <property name="dbAddress" ref = "dbForGeneratorAddress"/>
+        <property name="queryGeneratorAddress" ref = "generatorAddress"/>
     </bean>
-    <bean id = "dbForSignIn" class = "ru.otus.homework15.messageSystem.Address">
-        <constructor-arg value = "dbForSignIn"/>
+
+    <bean id = "dbForSignInAddress" class = "ru.otus.homework15.messageSystem.Address">
+        <constructor-arg value = "dbForSignInAddress"/>
     </bean>
-    <bean id = "dbForGenerator" class = "ru.otus.homework15.messageSystem.Address">
-        <constructor-arg value = "dbForGenerator"/>
+    <bean id = "dbForGeneratorAddress" class = "ru.otus.homework15.messageSystem.Address">
+        <constructor-arg value = "dbForGeneratorAddress"/>
     </bean>
-    <bean id = "fronAddress" class = "ru.otus.homework15.messageSystem.Address">
-        <constructor-arg value = "fronAddress"/>
+    <bean id = "frontAddress" class = "ru.otus.homework15.messageSystem.Address">
+        <constructor-arg value = "frontAddress"/>
+    </bean>
+    <bean id = "generatorAddress" class = "ru.otus.homework15.messageSystem.Address">
+        <constructor-arg value = "generatorAddress"/>
     </bean>
 
     <bean id = "hibernatePasswordDBService"
           class = "ru.otus.homework15.database.dbService.hibernateService.HibernatePasswordDBService">
-        <constructor-arg ref = "dbForSignIn"/>
+        <constructor-arg ref = "dbForSignInAddress"/>
         <constructor-arg ref = "messageContext"/>
     </bean>
 
-    <bean id = "webSocket" class="ru.otus.homework15.WebSocketTest">
-        <constructor-arg ref = "queryGenerator"/>
+    <bean id = "webSocket" class="ru.otus.homework15.front.FrontendServiceByWebSocket">
+        <constructor-arg ref = "frontAddress"/>
+        <constructor-arg ref = "messageContext"/>
     </bean>
-
 
     <bean id = "cacheService" class="ru.otus.homework15.database.cach.Cache">
         <constructor-arg type = "int" value = "10"/>
@@ -37,12 +44,13 @@
     <bean id = "hibernateCachedUserService"
           class = "ru.otus.homework15.database.dbService.hibernateService.HibernateCachedUserService">
         <constructor-arg ref = "cacheService"/>
-        <constructor-arg ref = "dbForGenerator"/>
+        <constructor-arg ref = "dbForGeneratorAddress"/>
         <constructor-arg ref = "messageContext"/>
     </bean>
 
-    <bean id = "queryGenerator" class="ru.otus.homework15.database.QueryGenerator">
-        <constructor-arg ref = "hibernateCachedUserService"/>
+    <bean id = "queryGeneratorImpl" class="ru.otus.homework15.queryGenerator.QueryGeneratorUserDataSet">
+        <constructor-arg ref = "generatorAddress"/>
+        <constructor-arg ref = "messageContext"/>
     </bean>
 
 </beans>

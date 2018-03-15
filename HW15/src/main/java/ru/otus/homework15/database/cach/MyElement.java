@@ -1,6 +1,5 @@
 package ru.otus.homework15.database.cach;
 
-
 public class MyElement<K, V> {
     private K key;
     private V value;

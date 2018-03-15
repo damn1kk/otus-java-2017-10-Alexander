@@ -18,6 +18,7 @@ public class AddressDataSet extends DataSet{
     public AddressDataSet(){}
 
     public AddressDataSet(String city, String street) {
+        super();
         this.street = street;
         this.city = city;
     }

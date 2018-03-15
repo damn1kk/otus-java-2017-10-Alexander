@@ -28,7 +28,7 @@
 
     <servlet>
         <servlet-name>statisticServlet</servlet-name>
-        <servlet-class>ru.otus.homework15.servlets.StatisticServlet</servlet-class>
+        <jsp-file>/statistic.html</jsp-file>
     </servlet>
 
     <servlet>

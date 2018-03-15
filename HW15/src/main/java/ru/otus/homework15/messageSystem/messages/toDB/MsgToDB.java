@@ -1,10 +1,11 @@
-package ru.otus.homework15.messageSystem.messages;
+package ru.otus.homework15.messageSystem.messages.toDB;
 
 import ru.otus.homework15.database.dbService.DBService;
 import ru.otus.homework15.messageSystem.Address;
 import ru.otus.homework15.messageSystem.Addressee;
+import ru.otus.homework15.messageSystem.messages.Message;
 
-public abstract class MsgToDB extends Message{
+public abstract class MsgToDB extends Message {
     public MsgToDB(Address from, Address to) {
         super(from, to);
     }
@@ -16,6 +17,6 @@ public abstract class MsgToDB extends Message{
         }
     }
 
-    public abstract  void exec(DBService dbService);
+    public abstract <T> void exec(DBService dbService);
 
 }

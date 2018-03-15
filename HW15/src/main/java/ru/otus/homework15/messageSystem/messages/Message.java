@@ -3,7 +3,11 @@ package ru.otus.homework15.messageSystem.messages;
 import ru.otus.homework15.messageSystem.Address;
 import ru.otus.homework15.messageSystem.Addressee;
 
+import java.util.logging.Logger;
+
 public abstract class Message {
+    Logger logger = Logger.getLogger(this.getClass().getName());
+
     private final Address from;
     private final Address to;
 
@@ -20,5 +24,5 @@ public abstract class Message {
         return to;
     }
 
-    public abstract void exec(Addressee addressee);
+    public abstract <T> void  exec(Addressee addressee);
 }

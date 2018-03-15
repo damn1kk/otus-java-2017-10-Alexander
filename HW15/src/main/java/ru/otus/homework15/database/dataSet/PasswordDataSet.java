@@ -6,9 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Password")
-public class PasswordDataSet {
-    @Id
+@Table(name = "PASSWORD")
+public class PasswordDataSet extends DataSet{
     @Column(name = "login")
     private String login;
 
@@ -17,6 +16,7 @@ public class PasswordDataSet {
 
     public PasswordDataSet(){}
     public PasswordDataSet(String login, String password){
+        super(-1L);
         this.login = login;
         this.password = password;
     }

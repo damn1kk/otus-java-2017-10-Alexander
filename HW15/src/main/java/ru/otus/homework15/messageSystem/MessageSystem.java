@@ -15,6 +15,7 @@ public class MessageSystem {
 
     private static final int DEFAULT_STEP_TIME = 10;
 
+    private boolean isStarted = false;
     private final List<Thread> workers;
     private final Map<Address, ConcurrentLinkedQueue<Message>> messageMap;
     private final Map<Address, Addressee> addresseeMap;
@@ -31,10 +32,17 @@ public class MessageSystem {
     }
 
     public void sendMessage(Message message){
+        logger.info("\nSending message \nfrom: " + message.getFrom() + "\nto: " + message.getTo());
         messageMap.get(message.getTo()).add(message);
+
+    }
+
+    public boolean isStarted() {
+        return isStarted;
     }
 
     public void start(){
+        isStarted = true;
         for (Map.Entry<Address, Addressee> entry : addresseeMap.entrySet()){
             String threadName = "MS-worker-" + entry.getKey().getId();
 
@@ -65,6 +73,7 @@ public class MessageSystem {
     }
 
     public void dispose(){
+        isStarted = false;
         workers.forEach(Thread::interrupt);
     }
 }

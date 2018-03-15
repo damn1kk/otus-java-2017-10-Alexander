@@ -5,12 +5,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import ru.otus.homework15.MessageSystemContext;
+import ru.otus.homework15.database.dataSet.DataSet;
 import ru.otus.homework15.database.dbService.DBException;
 import ru.otus.homework15.database.dbService.DBService;
 import ru.otus.homework15.database.dbService.QueryListener;
-import ru.otus.homework15.database.dbService.QueryResultListener;
+import ru.otus.homework15.database.dbService.hibernateService.utils.HibernateSessionFactory;
 import ru.otus.homework15.messageSystem.Address;
+import ru.otus.homework15.messageSystem.Addressee;
 import ru.otus.homework15.messageSystem.MessageSystem;
+import ru.otus.homework15.messageSystem.messages.Message;
+import ru.otus.homework15.messageSystem.messages.toQueryListener.MsgNotifyQueryListener;
 
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaQuery;
@@ -23,21 +27,23 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class HibernateDBService <T, ID extends Serializable> implements DBService<T, ID> {
+public class HibernateDBService <T extends DataSet, ID extends Serializable> implements DBService<T, ID> {
     protected final Address address;
-    protected final MessageSystemContext context;
+    protected final MessageSystemContext messageSystemContext;
+
     protected Set<QueryListener> queryListenerSet = new HashSet<>();
-    protected Set<QueryResultListener> queryResultListenerSet = new HashSet<>();
 
     protected SessionFactory sessionFactory;
     protected static final String DROP_TABLE = "DROP TABLE IF EXISTS %s;";
     private Class<T> type;
 
-    public HibernateDBService(Class<T> type, Address address, MessageSystemContext context){
+    public HibernateDBService(Class<T> type, Address address, MessageSystemContext messageSystemContext){
+        this.sessionFactory = HibernateSessionFactory.getSessionFactory();
         this.type = type;
         this.address = address;
-        this.context = context;
-        this.context.getMessageSystem().addAddressee(this);
+        this.messageSystemContext = messageSystemContext;
+
+        this.messageSystemContext.getMessageSystem().addAddressee(this);
     }
 
     @Override
@@ -67,10 +73,6 @@ public class HibernateDBService <T, ID extends Serializable> implements DBServic
             notifyQueryListeners("Find all");
 
             List<T> resultList = session.createQuery(query).getResultList();
-            if(resultList!= null && !resultList.isEmpty()) {
-                String resultString = ru.otus.homework15.utils.ListUtils.listToHtmlString(resultList);
-                notifyQueryResultListeners(resultString);
-            }
 
             return resultList;
         });
@@ -82,9 +84,6 @@ public class HibernateDBService <T, ID extends Serializable> implements DBServic
 
         T result = runInSessionWithFunction(session -> session.get(type,id));
 
-        if(result != null) {
-            notifyQueryResultListeners(result.toString());
-        }
         return result;
     }
 
@@ -135,7 +134,9 @@ public class HibernateDBService <T, ID extends Serializable> implements DBServic
             transaction.commit();
             return result;
         }catch(Exception e){
-            if(transaction != null) transaction.rollback();
+            e.printStackTrace();
+            if(transaction != null)
+                transaction.rollback();
             throw new DBException(e);
         }
     }
@@ -147,6 +148,7 @@ public class HibernateDBService <T, ID extends Serializable> implements DBServic
             consumer.accept(session);
             transaction.commit();
         }catch(Exception e){
+            e.printStackTrace();
             if(transaction != null) transaction.rollback();
             throw new DBException(e);
         }
@@ -154,12 +156,12 @@ public class HibernateDBService <T, ID extends Serializable> implements DBServic
 
     @Override
     public Address getAddress() {
-        return null;
+        return address;
     }
 
     @Override
     public MessageSystem getMS() {
-        return null;
+        return messageSystemContext.getMessageSystem();
     }
 
     @Override
@@ -168,19 +170,21 @@ public class HibernateDBService <T, ID extends Serializable> implements DBServic
     }
 
     @Override
-    public void addQueryResultListener(QueryResultListener queryResultListener){
-        queryResultListenerSet.add(queryResultListener);
-    }
-
-    protected void notifyQueryResultListeners(String result){
-        for(QueryResultListener listener : queryResultListenerSet){
-            listener.getQueryResult(result);
-        }
+    public void deleteQueryListener(QueryListener queryListener){
+        queryListenerSet.remove(queryListener);
     }
 
     protected void notifyQueryListeners(String query){
-        for(QueryListener listener : queryListenerSet){
-            listener.getNewQuery(query);
+        for(QueryListener listener : queryListenerSet) {
+            if (listener instanceof Addressee) {
+                Address listenersAddress = ((Addressee)listener).getAddress();
+
+                Message message = new MsgNotifyQueryListener(
+                        getAddress(), listenersAddress, query
+                );
+
+                getMS().sendMessage(message);
+            }
         }
     }
 
