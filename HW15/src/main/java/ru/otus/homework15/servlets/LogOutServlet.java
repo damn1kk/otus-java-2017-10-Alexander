@@ -3,6 +3,7 @@ package ru.otus.homework15.servlets;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.otus.homework15.queryGenerator.QueryGeneratorImpl;
+import ru.otus.homework15.queryGenerator.QueryGeneratorService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,20 +16,19 @@ import java.io.PrintWriter;
 
 public class LogOutServlet extends HttpServlet {
 
-    private QueryGeneratorImpl queryGeneratorImpl;
+    private QueryGeneratorService queryGeneratorImpl;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
         WebApplicationContext ac = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
-        this.queryGeneratorImpl = (QueryGeneratorImpl) ac.getBean("queryGeneratorImpl");
+        this.queryGeneratorImpl = (QueryGeneratorService) ac.getBean("queryGeneratorImpl");
     }
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        queryGeneratorImpl.stop();
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
