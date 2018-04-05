@@ -91,12 +91,6 @@
 
     <build>
         <finalName>${project.name}</finalName>
-
-        <resources>
-            <resource>
-                <directory>templates</directory>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>

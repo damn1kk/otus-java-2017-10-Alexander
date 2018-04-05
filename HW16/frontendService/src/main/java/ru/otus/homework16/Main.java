@@ -2,15 +2,15 @@ package ru.otus.homework16;
 
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 
-import java.io.File;
+import java.net.URI;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.logging.Logger;
 
 public class Main {
@@ -27,20 +27,19 @@ public class Main {
             server = new Server(DEFAULT_PORT);
         }
 
+        ResourceHandler resourceHandler = new ResourceHandler();
 
-        ResourceHandler resourceHandler =  new ResourceHandler();
         resourceHandler.setDirectoriesListed(true);
-
-        //System.out.println(new File("public_html").getAbsolutePath());
-        resourceHandler.setResourceBase("./public_html");
         resourceHandler.setWelcomeFiles(new String[]{"index.html"});
+        resourceHandler.setResourceBase("./public_html");
 
-        ServletContextHandler context = new ServletContextHandler();
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
+
         context.addEventListener(new MyServletContextListener());
 
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers(new Handler[]{resourceHandler, context});
+        handlers.setHandlers(new Handler[]{resourceHandler, context, new DefaultHandler()});
         server.setHandler(handlers);
         WebSocketServerContainerInitializer.configureContext(context);
 

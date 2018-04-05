@@ -13,22 +13,14 @@ import java.net.URL;
 import java.util.Map;
 
 public class HtmlPageGenerator {
-    private final static String PATH_TO_TEMPLATES = "./templates";
+    private final static String PATH_TO_TEMPLATES = "/templates";
 
     private static HtmlPageGenerator pageGenerator;
     private final Configuration cfg;
 
-    private HtmlPageGenerator(){
+    private HtmlPageGenerator() {
         cfg = new Configuration(Configuration.VERSION_2_3_23);
-        try {
-            //URL pathToTemplates = getClass().getClassLoader().getResource("./templates");
-            //cfg.setDirectoryForTemplateLoading(new File(pathToTemplates.toURI()));
-            System.out.println(getClass().getClassLoader().getResource(PATH_TO_TEMPLATES));
-
-            cfg.setDirectoryForTemplateLoading(new File(PATH_TO_TEMPLATES));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        cfg.setClassForTemplateLoading(this.getClass(), PATH_TO_TEMPLATES);
     }
 
     public static HtmlPageGenerator instance(){
