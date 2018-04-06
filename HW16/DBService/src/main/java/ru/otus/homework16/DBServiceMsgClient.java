@@ -16,11 +16,11 @@ public class DBServiceMsgClient extends ClientMsgSystem{
     private HibernatePasswordDBService dbService = new HibernatePasswordDBService();
 
     public DBServiceMsgClient(){
-        super(TypeOfAddressee.DB_SERVICE);
+        super();
     }
 
     public DBServiceMsgClient(String msId){
-        super(msId, TypeOfAddressee.DB_SERVICE);
+        super(msId);
     }
 
     @Override
@@ -37,54 +37,7 @@ public class DBServiceMsgClient extends ClientMsgSystem{
                 }else if(msg instanceof FindPassByLoginMsg){
                     Msg answer = null;
                     try {
-                        String login = ((FindPassByLoginMsg) msg).getLogin();
-                        String passwordFromUser = ((FindPassByLoginMsg) msg).getPassword();
-
-                        if(login != null && login.length() != 0 &&
-                                passwordFromUser != null && passwordFromUser.length() != 0){
-
-                            PasswordDataSet passwordDataSet = dbService.findPasswordByLogin(login);
-                            if(passwordDataSet == null){
-                                answer = new AnswerFindPassByLoginMsg(
-                                        getMsId(),
-                                        msg.getFrom(),
-                                        login,
-                                        passwordFromUser,
-                                        false,
-                                        "Wrong login"
-                                );
-                            }else{
-                                String passwordFromDB = passwordDataSet.getPassword();
-                                if (passwordFromUser.equals(passwordFromDB)) {
-                                    answer = new AnswerFindPassByLoginMsg(
-                                            getMsId(),
-                                            msg.getFrom(),
-                                            login,
-                                            passwordFromDB,
-                                            true,
-                                            ""
-                                    );
-                                }else{
-                                    answer = new AnswerFindPassByLoginMsg(
-                                            getMsId(),
-                                            msg.getFrom(),
-                                            login,
-                                            passwordFromUser,
-                                            false,
-                                            "Wrong password"
-                                    );
-                                }
-                            }
-                        }else{
-                            answer = new AnswerFindPassByLoginMsg(
-                                    getMsId(),
-                                    msg.getFrom(),
-                                    login,
-                                    passwordFromUser,
-                                    false,
-                                    "Empty login or password"
-                            );
-                        }
+                        answer = findUserByLogin(msg);
                     }catch(DBException e){
                         logger.log(Level.SEVERE, e.getMessage());
                         answer = new ProblemWithDataBaseMsg(getMsId(), msg.getFrom(), e.getMessage());
@@ -101,44 +54,7 @@ public class DBServiceMsgClient extends ClientMsgSystem{
                     Msg answer = null;
 
                     try {
-                        String login = ((RegisterNewUserMsg) msg).getLogin();
-                        String passwordFromUser = ((RegisterNewUserMsg) msg).getPassword();
-
-                        if(login != null && login.length() != 0 &&
-                                passwordFromUser != null && passwordFromUser.length() != 0){
-
-                            PasswordDataSet passwordDataSet = dbService.findPasswordByLogin(login);
-
-                            if (passwordDataSet != null) {
-                                answer = new AnswerRegisterNewUserMsg(
-                                        getMsId(),
-                                        msg.getFrom(),
-                                        passwordDataSet.getLogin(),
-                                        passwordDataSet.getPassword(),
-                                        false,
-                                        "This login is already taken"
-                                );
-                            } else {
-                                dbService.save(new PasswordDataSet(login, passwordFromUser));
-                                answer = new AnswerRegisterNewUserMsg(
-                                        getMsId(),
-                                        msg.getFrom(),
-                                        login,
-                                        passwordFromUser,
-                                        true,
-                                        ""
-                                );
-                            }
-                        }else{
-                            answer = new AnswerRegisterNewUserMsg(
-                                    getMsId(),
-                                    msg.getFrom(),
-                                    login,
-                                    passwordFromUser,
-                                    false,
-                                    "Empty login or password"
-                            );
-                        }
+                        answer = registerNewUser(msg);
                     } catch (DBException e) {
                         logger.log(Level.SEVERE, e.getMessage());
                         answer = new ProblemWithDataBaseMsg(getMsId(), msg.getFrom(), e.getMessage());
@@ -159,8 +75,101 @@ public class DBServiceMsgClient extends ClientMsgSystem{
         }
     }
 
-    @Override
-    public TypeOfAddressee getTypeMS() {
-        return TypeOfAddressee.DB_SERVICE;
+    private Msg findUserByLogin(Msg inputMsg) throws DBException{
+        Msg answer;
+        String login = ((FindPassByLoginMsg) inputMsg).getLogin();
+        String passwordFromUser = ((FindPassByLoginMsg) inputMsg).getPassword();
+
+        if(login != null && login.length() != 0 &&
+                passwordFromUser != null && passwordFromUser.length() != 0){
+
+            PasswordDataSet passwordDataSet = dbService.findPasswordByLogin(login);
+            if(passwordDataSet == null){
+                answer = new AnswerFindPassByLoginMsg(
+                        getMsId(),
+                        inputMsg.getFrom(),
+                        login,
+                        passwordFromUser,
+                        false,
+                        "Wrong login"
+                );
+            }else{
+                String passwordFromDB = passwordDataSet.getPassword();
+                if (passwordFromUser.equals(passwordFromDB)) {
+                    answer = new AnswerFindPassByLoginMsg(
+                            getMsId(),
+                            inputMsg.getFrom(),
+                            login,
+                            passwordFromDB,
+                            true,
+                            ""
+                    );
+                }else{
+                    answer = new AnswerFindPassByLoginMsg(
+                            getMsId(),
+                            inputMsg.getFrom(),
+                            login,
+                            passwordFromUser,
+                            false,
+                            "Wrong password"
+                    );
+                }
+            }
+        }else{
+            answer = new AnswerFindPassByLoginMsg(
+                    getMsId(),
+                    inputMsg.getFrom(),
+                    login,
+                    passwordFromUser,
+                    false,
+                    "Empty login or password"
+            );
+        }
+
+        return answer;
+    }
+
+    private Msg registerNewUser(Msg inputMsg) throws DBException{
+        Msg answer;
+        String login = ((RegisterNewUserMsg) inputMsg).getLogin();
+        String passwordFromUser = ((RegisterNewUserMsg) inputMsg).getPassword();
+
+        if(login != null && login.length() != 0 &&
+                passwordFromUser != null && passwordFromUser.length() != 0){
+
+            PasswordDataSet passwordDataSet = dbService.findPasswordByLogin(login);
+
+            if (passwordDataSet != null) {
+                answer = new AnswerRegisterNewUserMsg(
+                        getMsId(),
+                        inputMsg.getFrom(),
+                        passwordDataSet.getLogin(),
+                        passwordDataSet.getPassword(),
+                        false,
+                        "This login is already taken"
+                );
+            } else {
+                dbService.save(new PasswordDataSet(login, passwordFromUser));
+                answer = new AnswerRegisterNewUserMsg(
+                        getMsId(),
+                        inputMsg.getFrom(),
+                        login,
+                        passwordFromUser,
+                        true,
+                        ""
+                );
+            }
+        }else{
+            answer = new AnswerRegisterNewUserMsg(
+                    getMsId(),
+                    inputMsg.getFrom(),
+                    login,
+                    passwordFromUser,
+                    false,
+                    "Empty login or password"
+            );
+        }
+
+        return answer;
     }
 }

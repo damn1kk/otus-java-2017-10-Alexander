@@ -46,6 +46,9 @@ public class Main {
                     }else if(command.toLowerCase().equals("stop all")){
                         server.stopAllClients();
                         processManager.stopAllProcess();
+                    }else if(command.toLowerCase().startsWith("stop")){
+                        String processName = command.substring(4).trim();
+                        processManager.stopProcess(processName);
                     }
                 } catch (IOException e) {
                     logger.log(Level.SEVERE, e.getMessage());

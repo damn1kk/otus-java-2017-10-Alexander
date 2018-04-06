@@ -89,7 +89,7 @@ public class SocketMsgWorker implements MsgWorker {
                 }
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Problem with socket connection or socket inputStream", e);
+            logger.log(Level.SEVERE, e.getMessage());
         }catch(ParseException | ClassNotFoundException e){
             logger.log(Level.SEVERE, "Can not parse JSON to MSG", e);
         }finally{

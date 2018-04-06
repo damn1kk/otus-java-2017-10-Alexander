@@ -44,7 +44,7 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
     private JSONParser jsonParser = new JSONParser();
 
     public FrontendServiceMsgClient(){
-        super(TypeOfAddressee.FRONT_SERVICE);
+        super();
         connectToServerBySocket(HOST,PORT);
     }
 

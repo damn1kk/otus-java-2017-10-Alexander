@@ -30,4 +30,8 @@ public class ProcessManager {
             pr.stop();
         }
     }
+
+    public void stopProcess(String processName){
+
+    }
 }

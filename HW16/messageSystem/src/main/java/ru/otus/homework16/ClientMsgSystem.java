@@ -18,18 +18,15 @@ public abstract class ClientMsgSystem implements Addressee{
     protected static final String SERVER_NAME = "Server";
 
     protected String msId;
-    protected TypeOfAddressee typeOfAddressee;
     protected boolean isRegistered;
     protected SocketMsgWorker msgWorker;
 
 
-    public ClientMsgSystem(String msId, TypeOfAddressee typeOfAddressee){
+    public ClientMsgSystem(String msId){
         this.msId = msId;
-        this.typeOfAddressee = typeOfAddressee;
     }
 
-    public ClientMsgSystem(TypeOfAddressee typeOfAddressee){
-        this.typeOfAddressee = typeOfAddressee;
+    public ClientMsgSystem(){
     }
 
     public void connectToServerBySocket(String host, int port){
