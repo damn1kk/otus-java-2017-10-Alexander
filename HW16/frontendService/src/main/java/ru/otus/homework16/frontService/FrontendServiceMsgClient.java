@@ -29,7 +29,6 @@ import java.util.logging.Logger;
 public class FrontendServiceMsgClient extends ClientMsgSystem {
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private final static String DBSERVICE_NAME = "DBService";
     private final static String HOST = "localhost";
     private final static int PORT = 9090;
     private final MessageGeneratorToBrowser generatorToBrowser = new MessageGeneratorToBrowser();
@@ -66,7 +65,8 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
             if(typeOfMessage.equals("signIn")){
                 String login = (String) jsonObject.get("login");
                 String password = (String) jsonObject.get("password");
-                Msg msgToDb = new FindPassByLoginMsg(this.getMsId(), DBSERVICE_NAME, login, password);
+                String dbServiceName = (String) jsonObject.get("dbService");
+                Msg msgToDb = new FindPassByLoginMsg(this.getMsId(), dbServiceName, login, password);
                 try {
                     sendMessage(msgToDb);
                 }catch(Exception e){
@@ -75,7 +75,8 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
             }else if(typeOfMessage.equals("signUp")){
                 String login = (String) jsonObject.get("login");
                 String password = (String) jsonObject.get("password");
-                Msg msgToDb = new RegisterNewUserMsg(this.getMsId(), DBSERVICE_NAME, login, password);
+                String dbServiceName = (String) jsonObject.get("dbService");
+                Msg msgToDb = new RegisterNewUserMsg(this.getMsId(), dbServiceName, login, password);
                 try{
                     sendMessage(msgToDb);
                 }catch(Exception e){
@@ -83,6 +84,8 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
                 }
             }else if(typeOfMessage.equals("backToMainPage")){
                 sendMessageToWebSocketClient(generatorToBrowser.createMessageMainPage());
+                JSONObject message = generatorToBrowser.createMessageUpdateDbServices(this.allDbServices);
+                sendMessageToWebSocketClient(message);
             }
 
         }catch(ParseException e){

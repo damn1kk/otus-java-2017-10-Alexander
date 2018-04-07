@@ -38,21 +38,25 @@ document.addEventListener('click', function(e){
     if(e.target && e.target.id == 'signUpButton'){
         var login = document.getElementById("loginTextField").value;
         var password = document.getElementById("passwordTextField").value;
+        var dbService = document.getElementById("dbServicesSelectList").value;
         if(websocket){
             websocket.send(JSON.stringify({
                 typeOfMessage: "signUp",
                 login: login,
-                password: password
+                password: password,
+                dbService: dbService
             }));
         }
     } else if(e.target && e.target.id == 'signInButton'){
         var login = document.getElementById("loginTextField").value;
         var password = document.getElementById("passwordTextField").value;
+        var dbService = document.getElementById("dbServicesSelectList").value;
         if(websocket){
             websocket.send(JSON.stringify({
                 typeOfMessage: "signIn",
                 login: login,
-                password: password
+                password: password,
+                dbService: dbService
             }));
         }
     } else if(e.target && e.target.id == 'backToMainPageButton'){
