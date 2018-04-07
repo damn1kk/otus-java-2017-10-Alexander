@@ -1,7 +1,5 @@
 package ru.otus.homework16;
 
-import ru.otus.homework16.database.dbService.hibernateService.HibernatePasswordDBService;
-
 import java.util.logging.Logger;
 
 public class Main {

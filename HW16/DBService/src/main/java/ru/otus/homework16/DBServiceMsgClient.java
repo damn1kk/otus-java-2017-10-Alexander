@@ -16,11 +16,11 @@ public class DBServiceMsgClient extends ClientMsgSystem{
     private HibernatePasswordDBService dbService = new HibernatePasswordDBService();
 
     public DBServiceMsgClient(){
-        super();
+        super(TypeOfAddressee.DB_SERVICE);
     }
 
     public DBServiceMsgClient(String msId){
-        super(msId);
+        super(msId, TypeOfAddressee.DB_SERVICE);
     }
 
     @Override

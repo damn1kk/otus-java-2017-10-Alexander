@@ -1,11 +1,16 @@
 package ru.otus.homework16.msg;
 
+import ru.otus.homework16.addressee.TypeOfAddressee;
+
 public class RegisterMsg extends Msg{
-    public RegisterMsg(){
-        super(RegisterMsg.class);
+    private TypeOfAddressee typeOfAddressee;
+
+    public RegisterMsg(String from, String to, TypeOfAddressee typeOfAddressee) {
+        super(RegisterMsg.class, from, to);
+        this.typeOfAddressee = typeOfAddressee;
     }
 
-    public RegisterMsg(String from, String to) {
-        super(RegisterMsg.class, from, to);
+    public TypeOfAddressee getTypeOfAddressee() {
+        return typeOfAddressee;
     }
 }

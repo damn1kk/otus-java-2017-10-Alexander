@@ -4,7 +4,7 @@ import ru.otus.homework16.msg.Msg;
 
 import java.io.IOException;
 
-public interface MsgWorker {
+public interface    MsgWorker {
     void send(Msg msg);
     Msg poll();
     Msg take() throws InterruptedException;

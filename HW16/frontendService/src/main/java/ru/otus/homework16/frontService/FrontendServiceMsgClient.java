@@ -1,9 +1,12 @@
-package ru.otus.homework16;
+package ru.otus.homework16.frontService;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import ru.otus.homework16.ClientMsgSystem;
+import ru.otus.homework16.HtmlPageGenerator;
 import ru.otus.homework16.addressee.TypeOfAddressee;
+import ru.otus.homework16.msg.AllDbServicesMsg;
 import ru.otus.homework16.msg.AnswerRegisterMsg;
 import ru.otus.homework16.msg.Msg;
 import ru.otus.homework16.msg.forDBService.AnswerFindPassByLoginMsg;
@@ -11,11 +14,7 @@ import ru.otus.homework16.msg.forDBService.AnswerRegisterNewUserMsg;
 import ru.otus.homework16.msg.forDBService.FindPassByLoginMsg;
 import ru.otus.homework16.msg.forDBService.RegisterNewUserMsg;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
 import javax.websocket.*;
-import javax.websocket.server.ServerContainer;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.HashMap;
@@ -33,18 +32,14 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
     private final static String DBSERVICE_NAME = "DBService";
     private final static String HOST = "localhost";
     private final static int PORT = 9090;
-
-    private final static String MAIN_PAGE_TEMPLATE = "main_page.html";
-    private final static String SUCCESSFUL_REGISTRATION_TEMPLATE = "successful_registration.html";
-    private final static String REGISTRATION_FAILED_TEMPLATE = "registration_failed.html";
-    private final static String SUCCESSFUL_LOGIN_TEMPLATE = "successful_login.html";
-    private final static String LOGIN_FAILED_TEMPLATE = "login_failed.html";
+    private final MessageGeneratorToBrowser generatorToBrowser = new MessageGeneratorToBrowser();
 
     private Set<Session> clients = new HashSet<>();
+    private Set<String> allDbServices = new HashSet<>();
     private JSONParser jsonParser = new JSONParser();
 
     public FrontendServiceMsgClient(){
-        super();
+        super(TypeOfAddressee.FRONT_SERVICE);
         connectToServerBySocket(HOST,PORT);
     }
 
@@ -52,6 +47,13 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
     public void onOpen(Session session){
         logger.info("connected..." + session.getId());
         clients.add(session);
+
+        JSONObject message = generatorToBrowser.createMessageUpdateDbServices(this.allDbServices);
+        try {
+            session.getBasicRemote().sendText(message.toJSONString());
+        }catch(IOException e){
+            logger.log(Level.SEVERE,"Can not write json into message", e);
+        }
     }
 
     @OnMessage
@@ -80,7 +82,7 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
                     logger.log(Level.SEVERE, e.getMessage(), e);
                 }
             }else if(typeOfMessage.equals("backToMainPage")){
-                sendMessageToWebSocketClient(createMessageMainPage());
+                sendMessageToWebSocketClient(generatorToBrowser.createMessageMainPage());
             }
 
         }catch(ParseException e){
@@ -110,55 +112,6 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
         }
     }
 
-    private JSONObject createMessageMainPage(){
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("typeOfMessage", "changeBody");
-        jsonObject.put("htmlBody", HtmlPageGenerator.instance().generatePage(MAIN_PAGE_TEMPLATE, null));
-        return jsonObject;
-    }
-
-    private JSONObject createMessageSuccessfulRegistration(String login){
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("login", login);
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("typeOfMessage", "changeBody");
-        HtmlPageGenerator generator = HtmlPageGenerator.instance();
-        jsonObject.put("htmlBody", generator.generatePage(SUCCESSFUL_REGISTRATION_TEMPLATE, variables));
-
-        return jsonObject;
-    }
-
-    private JSONObject createMessageRegistrationFailed(String login, String reason){
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("reason", reason);
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("typeOfMessage", "changeBody");
-        jsonObject.put("htmlBody", HtmlPageGenerator.instance().generatePage(REGISTRATION_FAILED_TEMPLATE, variables));
-        return jsonObject;
-    }
-
-    private JSONObject createMessageSuccessfulLogin(String login){
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("login", login);
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("typeOfMessage", "changeBody");
-        jsonObject.put("htmlBody", HtmlPageGenerator.instance().generatePage(SUCCESSFUL_LOGIN_TEMPLATE, variables));
-        return jsonObject;
-    }
-
-    private JSONObject createMessageLoginFailed(String reason){
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("reason", reason);
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("typeOfMessage", "changeBody");
-        jsonObject.put("htmlBody", HtmlPageGenerator.instance().generatePage(LOGIN_FAILED_TEMPLATE, variables));
-        return jsonObject;
-    }
-
     @Override
     protected void handleMsg() {
         try {
@@ -176,10 +129,10 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
                     String login = ((AnswerFindPassByLoginMsg) msg).getLogin();
                     boolean isSuccess = ((AnswerFindPassByLoginMsg) msg).isSuccess();
                     if(isSuccess){
-                        JSONObject message = createMessageSuccessfulLogin(login);
+                        JSONObject message = generatorToBrowser.createMessageSuccessfulLogin(login);
                         sendMessageToWebSocketClient(message);
                     }else{
-                        JSONObject message = createMessageLoginFailed(((AnswerFindPassByLoginMsg) msg).getReasonOfError());
+                        JSONObject message = generatorToBrowser.createMessageLoginFailed(((AnswerFindPassByLoginMsg) msg).getReasonOfError());
                         sendMessageToWebSocketClient(message);
                     }
                     if(password != null && password.length() != 0){
@@ -188,23 +141,21 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
                     String login = ((AnswerRegisterNewUserMsg) msg).getLogin();
                     boolean isSuccess = ((AnswerRegisterNewUserMsg) msg).isSuccess();
                     if(isSuccess){
-                        JSONObject message = createMessageSuccessfulRegistration(login);
+                        JSONObject message = generatorToBrowser.createMessageSuccessfulRegistration(login);
                         sendMessageToWebSocketClient(message);
                     }else{
-                        JSONObject message = createMessageRegistrationFailed(login, ((AnswerRegisterNewUserMsg) msg).getReasonOfError());
+                        JSONObject message = generatorToBrowser.createMessageRegistrationFailed(login, ((AnswerRegisterNewUserMsg) msg).getReasonOfError());
                         sendMessageToWebSocketClient(message);
                     }
+                }else if(msg instanceof AllDbServicesMsg){
+                    Set<String> allDbServices = ((AllDbServicesMsg) msg).getDbServices();
+                    this.allDbServices = allDbServices;
+                    JSONObject message = generatorToBrowser.createMessageUpdateDbServices(allDbServices);
+                    sendMessageToWebSocketClient(message);
                 }
             }
         }catch(InterruptedException e){
             logger.log(Level.SEVERE, e.getMessage());
         }
     }
-
-    @Override
-    public TypeOfAddressee getTypeMS() {
-        return TypeOfAddressee.FRONT_SERVICE;
-    }
-
-
 }

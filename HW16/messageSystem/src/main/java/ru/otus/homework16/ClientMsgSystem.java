@@ -18,15 +18,17 @@ public abstract class ClientMsgSystem implements Addressee{
     protected static final String SERVER_NAME = "Server";
 
     protected String msId;
+    protected TypeOfAddressee typeOfAddressee;
     protected boolean isRegistered;
     protected SocketMsgWorker msgWorker;
 
-
-    public ClientMsgSystem(String msId){
-        this.msId = msId;
+    public ClientMsgSystem(TypeOfAddressee typeOfAddressee){
+        this.typeOfAddressee = typeOfAddressee;
     }
 
-    public ClientMsgSystem(){
+    public ClientMsgSystem(String msId, TypeOfAddressee typeOfAddressee){
+        this.msId = msId;
+        this.typeOfAddressee = typeOfAddressee;
     }
 
     public void connectToServerBySocket(String host, int port){
@@ -39,9 +41,9 @@ public abstract class ClientMsgSystem implements Addressee{
             executorService.submit(this::handleMsg);
 
             if(msId != null) {
-                msgWorker.send(new RegisterMsg(msId, SERVER_NAME));
+                msgWorker.send(new RegisterMsg(msId, SERVER_NAME, typeOfAddressee));
             }else{
-                msgWorker.send(new RegisterMsg(getClass().getName(), SERVER_NAME));
+                msgWorker.send(new RegisterMsg(getClass().getName(), SERVER_NAME, typeOfAddressee));
             }
         }catch(IOException e){
             logger.log(Level.SEVERE, e.getMessage(), e);
@@ -66,6 +68,11 @@ public abstract class ClientMsgSystem implements Addressee{
     @Override
     public void setMsId(String msId){
         this.msId = msId;
+    }
+
+    @Override
+    public TypeOfAddressee getTypeOfAddressee(){
+        return typeOfAddressee;
     }
 
     public boolean isRegistered() {

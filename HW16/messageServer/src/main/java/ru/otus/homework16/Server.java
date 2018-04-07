@@ -1,5 +1,7 @@
 package ru.otus.homework16;
 
+import ru.otus.homework16.addressee.TypeOfAddressee;
+import ru.otus.homework16.msg.AllDbServicesMsg;
 import ru.otus.homework16.msg.AnswerRegisterMsg;
 import ru.otus.homework16.msg.Msg;
 import ru.otus.homework16.msg.RegisterMsg;
@@ -21,6 +23,7 @@ import java.util.logging.Logger;
 public class Server{
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
+    private static final String SERVER_NAME = "Server";
     private static final int PORT = 9090;
     private static final int THREADS_NUMBER = 2;
 
@@ -29,11 +32,13 @@ public class Server{
 
     private List<MsgWorker> unregisteredWorkersToClients;
     private Map<String, MsgWorker> registeredWorkersToClients;
+    private Map<String, TypeOfAddressee> typesOfClients;
 
     public Server(){
         executor = Executors.newFixedThreadPool(THREADS_NUMBER);
         registeredWorkersToClients = new ConcurrentHashMap<>();
         unregisteredWorkersToClients = new CopyOnWriteArrayList<>();
+        typesOfClients = new ConcurrentHashMap<>();
     }
 
     public void start() throws IOException{
@@ -63,12 +68,7 @@ public class Server{
                 Msg msg = worker.poll();
                 while(msg != null){
                     logger.info("Receive message: " + msg);
-                    if(msg instanceof RegisterMsg){
-                        registerNewClient(worker, msg);
-                    }else{
-                        redirectMessage(msg);
-                    }
-
+                    redirectMessage(msg);
                     msg = worker.poll();
                 }
             });
@@ -94,6 +94,8 @@ public class Server{
 
     private void registerNewClient(MsgWorker worker, Msg msg){
         String requestedId = msg.getFrom();
+        TypeOfAddressee type = ((RegisterMsg)msg).getTypeOfAddressee();
+
         while(registeredWorkersToClients.containsKey(requestedId)){
             requestedId = generateNewId(requestedId);
         }
@@ -105,10 +107,51 @@ public class Server{
             registeredWorkersToClients.remove(MapUtils.findFirstKeyByValue(registeredWorkersToClients, worker));
         }
 
+        typesOfClients.put(requestedId, type);
         registeredWorkersToClients.put(requestedId, worker);
-        worker.send(new AnswerRegisterMsg("Server", requestedId));
+        worker.send(new AnswerRegisterMsg(SERVER_NAME, requestedId));
+        if(type == TypeOfAddressee.DB_SERVICE){
+            sendAllDBServicesIdsToAllFrontendServices();
+        }
+        if(type == TypeOfAddressee.FRONT_SERVICE){
+            sendAllDbServicesToThisFrontendService(worker, requestedId);
+        }
     }
 
+
+    private void sendAllDbServicesToThisFrontendService(MsgWorker worker, String id){
+        Set<String> allDBClients = getAllDBClients();
+        worker.send(new AllDbServicesMsg(SERVER_NAME, id, allDBClients));
+    }
+
+    private void sendAllDBServicesIdsToAllFrontendServices(){
+        Set<String> allDbClients = getAllDBClients();
+        Set<String> allFrontendClients = getAllFrontendClients();
+        for(String frontClientId : allFrontendClients){
+            MsgWorker worker = registeredWorkersToClients.get(frontClientId);
+            worker.send(new AllDbServicesMsg(SERVER_NAME, frontClientId, allDbClients));
+        }
+    }
+
+    private Set<String> getAllFrontendClients(){
+        final Set<String> clientsId = new HashSet<>();
+        typesOfClients.forEach((id, type) ->{
+            if(type == TypeOfAddressee.FRONT_SERVICE){
+                clientsId.add(id);
+            }
+        });
+        return clientsId;
+    }
+
+    private Set<String> getAllDBClients(){
+        final Set<String> clientsId = new HashSet<>();
+        typesOfClients.forEach((id, type) ->{
+            if(type == TypeOfAddressee.DB_SERVICE){
+                clientsId.add(id);
+            }
+        });
+        return clientsId;
+    }
 
     private String generateNewId(String id){
         Random random = new Random();

@@ -1,5 +1,7 @@
 package ru.otus.homework16;
 
+import ru.otus.homework16.frontService.FrontendServiceMsgClient;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.util.logging.Level;

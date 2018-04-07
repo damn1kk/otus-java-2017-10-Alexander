@@ -14,10 +14,25 @@ websocket.onmessage = function(data){
 
             if(obj.typeOfMessage == 'changeBody'){
                 document.body.innerHTML = obj.htmlBody;
+
+            }else if(obj.typeOfMessage == 'updateDbServices'){
+                var dbServices = obj.dbServices;
+                var dbServicesSelectList = document.getElementById("dbServicesSelectList");
+
+                for(var i = dbServicesSelectList.length - 1; i >= 0 ; i--){
+                    dbServicesSelectList.remove(i);
+                }
+
+                for(var i = 0; i < dbServices.length; i++){
+                    var option = document.createElement("option");
+                    option.text = dbServices[i];
+                    dbServicesSelectList.add(option);
+                }
+
+                dbServicesSelectList.selectedIndex = -1;
             }
         }catch(e){}
 }
-
 
 document.addEventListener('click', function(e){
     if(e.target && e.target.id == 'signUpButton'){

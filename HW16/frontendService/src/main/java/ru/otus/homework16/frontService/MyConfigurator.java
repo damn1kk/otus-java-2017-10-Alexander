@@ -1,4 +1,4 @@
-package ru.otus.homework16;
+package ru.otus.homework16.frontService;
 
 import javax.websocket.server.ServerEndpointConfig;
 
