@@ -23,6 +23,7 @@ public class ProcessManager {
         ProcessRunner pr = new ProcessRunnerImpl();
         pr.start(FRONTENDSERVICE_START_COMMAND);
         allProcess.add(pr);
+
     }
 
     public void stopAllProcess(){
@@ -33,5 +34,13 @@ public class ProcessManager {
 
     public void stopProcess(String processName){
 
+    }
+
+    public String getOutput(){
+        String result ="";
+        for(ProcessRunner p : allProcess){
+            return result += p.getOutput();
+        }
+        return result;
     }
 }

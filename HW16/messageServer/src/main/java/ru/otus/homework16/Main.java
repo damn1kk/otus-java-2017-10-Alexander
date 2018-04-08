@@ -44,6 +44,14 @@ public class Main {
                     }else if(command.toLowerCase().startsWith("stop")){
                         String processName = command.substring(4).trim();
                         processManager.stopProcess(processName);
+                    }else if(command.toLowerCase().equals("exit") || command.toLowerCase().equals("quite")){
+                        server.stopAllClients();
+                        server.stop();
+                        processManager.stopAllProcess();
+                        System.exit(0);
+                    } else if (command.toLowerCase().equals("front log")) {
+                        System.out.println(processManager.getOutput());
+
                     }
                 } catch (IOException e) {
                     logger.log(Level.SEVERE, e.getMessage());

@@ -7,6 +7,8 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
+
+import java.net.URL;
 import java.util.logging.Logger;
 
 public class Main {
@@ -27,7 +29,10 @@ public class Main {
 
         resourceHandler.setDirectoriesListed(true);
         resourceHandler.setWelcomeFiles(new String[]{"index.html"});
-        resourceHandler.setResourceBase("./public_html");
+
+        ClassLoader cl = Main.class.getClassLoader();
+        URL getAbsolutePath = cl.getResource("public_html");
+        resourceHandler.setResourceBase(getAbsolutePath.toExternalForm());
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");

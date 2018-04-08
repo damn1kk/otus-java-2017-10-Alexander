@@ -66,21 +66,25 @@ public class FrontendServiceMsgClient extends ClientMsgSystem {
                 String login = (String) jsonObject.get("login");
                 String password = (String) jsonObject.get("password");
                 String dbServiceName = (String) jsonObject.get("dbService");
-                Msg msgToDb = new FindPassByLoginMsg(this.getMsId(), dbServiceName, login, password);
-                try {
-                    sendMessage(msgToDb);
-                }catch(Exception e){
-                    logger.log(Level.SEVERE, e.getMessage(), e);
+                if(dbServiceName != null && dbServiceName.length() > 0) {
+                    Msg msgToDb = new FindPassByLoginMsg(this.getMsId(), dbServiceName, login, password);
+                    try {
+                        sendMessage(msgToDb);
+                    } catch (Exception e) {
+                        logger.log(Level.SEVERE, e.getMessage(), e);
+                    }
                 }
             }else if(typeOfMessage.equals("signUp")){
                 String login = (String) jsonObject.get("login");
                 String password = (String) jsonObject.get("password");
                 String dbServiceName = (String) jsonObject.get("dbService");
-                Msg msgToDb = new RegisterNewUserMsg(this.getMsId(), dbServiceName, login, password);
-                try{
-                    sendMessage(msgToDb);
-                }catch(Exception e){
-                    logger.log(Level.SEVERE, e.getMessage(), e);
+                if(dbServiceName != null && dbServiceName.length() > 0) {
+                    Msg msgToDb = new RegisterNewUserMsg(this.getMsId(), dbServiceName, login, password);
+                    try {
+                        sendMessage(msgToDb);
+                    } catch (Exception e) {
+                        logger.log(Level.SEVERE, e.getMessage(), e);
+                    }
                 }
             }else if(typeOfMessage.equals("backToMainPage")){
                 sendMessageToWebSocketClient(generatorToBrowser.createMessageMainPage());
