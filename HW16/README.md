@@ -1,8 +1,12 @@
-Instruction:
+Инструкция:
 
-Available commands:
+Для запуска приложения необходимо установить в локальный репозиторий messageSystem.jar
 
-"start dbservice" or "start db" for starting a dbService on the default port;  
-"start frontendservice" or "start front" for starting a frontendService on the default port;  
-"start all" for starting one dbService and one frontendService;  
-"stop all" for stopping all process;
+Доступные консольные команды для messageServer:
+
+"start dbservice" или "start db" для запуска DBService со стандратным именем;  
+"start dbservice name" или "start db name" для запуска DBService с именем "name";  
+"start frontendservice" или "start front" для запуска frontendService со стандартным портом(9999);  
+"start frontendservice port" или "start front port" для запуска frontendService с портом "port";   
+"start all" для запуска одного dbService и одного frontendService со стандартными параметрами;    
+"stop all" для остановки всех процессов.
