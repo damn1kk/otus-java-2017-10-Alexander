@@ -17,13 +17,10 @@ import ru.otus.homework16.msg.forDBService.RegisterNewUserMsg;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 @ServerEndpoint(value = "/wsserver", configurator = MyConfigurator.class)
 public class FrontendServiceMsgClient extends ClientMsgSystem {

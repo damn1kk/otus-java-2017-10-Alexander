@@ -7,9 +7,15 @@ public class Main {
 
     private static final String HOST = "localhost";
     private static final int PORT = 9090;
+    private static final String DEFAULT_NAME = "DBService";
 
     public static void main(String[] args) {
-        new DBServiceMsgClient("DBService").connectToServerBySocket(HOST, PORT);
+        if(args.length != 0){
+            String processName = args[0];
+            new DBServiceMsgClient(processName).connectToServerBySocket(HOST, PORT);
+        }else {
+            new DBServiceMsgClient(DEFAULT_NAME).connectToServerBySocket(HOST, PORT);
+        }
     }
 
 

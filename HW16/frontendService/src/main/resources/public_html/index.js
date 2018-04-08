@@ -1,4 +1,11 @@
-websocket = new WebSocket('ws://localhost:9999/wsserver');
+var currentUrl = window.location.href;
+var arr = currentUrl.split("/");
+var hostPort = arr[2];
+var arr = hostPort.split(":");
+var port = arr[1];
+
+websocket = new WebSocket('ws://localhost:' + port + '/wsserver');
+
 websocket.onopen = function(data){
     console.log("Connected ");
 }

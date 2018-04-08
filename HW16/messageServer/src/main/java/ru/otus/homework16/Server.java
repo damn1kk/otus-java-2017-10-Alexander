@@ -24,7 +24,7 @@ public class Server{
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     private static final String SERVER_NAME = "Server";
-    private static final int PORT = 9090;
+    private static final int DEFAULT_PORT = 9090;
     private static final int THREADS_NUMBER = 2;
 
     private volatile boolean isStarted = false;
@@ -42,14 +42,14 @@ public class Server{
     }
 
     public void start() throws IOException{
-        logger.info("Server started");
         isStarted = true;
         executor.submit(this::handleMsg);
         executor.submit(this::listenSocket);
+        logger.info("Server started");
     }
 
     private void listenSocket(){
-        try(ServerSocket server = new ServerSocket(PORT)){
+        try(ServerSocket server = new ServerSocket(DEFAULT_PORT)){
             while(isStarted) {
                 Socket socketServerSide = server.accept();
                 logger.info("Client connected: " + socketServerSide);
@@ -59,6 +59,7 @@ public class Server{
             }
         }catch(IOException e){
             logger.log(Level.SEVERE, e.getMessage());
+            System.exit(1);
         }
     }
 

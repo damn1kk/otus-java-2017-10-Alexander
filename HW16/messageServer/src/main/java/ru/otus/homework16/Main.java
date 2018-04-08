@@ -33,8 +33,16 @@ public class Main {
                         }
                     }else if(command.toLowerCase().equals("start dbservice") || command.toLowerCase().equals("start db")){
                         processManager.startDBService();
+                    }else if(command.toLowerCase().startsWith("start dbservice") || command.toLowerCase().startsWith("start db")){
+                        String[] commandAsArray = command.split(" ");
+                        String processName = commandAsArray[2];
+                        processManager.startDBService(processName);
                     }else if(command.toLowerCase().equals("start frontendservice") || command.toLowerCase().equals("start front")){
                         processManager.startFrontendService();
+                    }else if(command.toLowerCase().startsWith("start frontendservice") || command.toLowerCase().startsWith("start front")){
+                        String[] commandAsArray = command.split(" ");
+                        String portNumber = commandAsArray[2];
+                        processManager.startFrontendService(Integer.parseInt(portNumber));
                     }else if(command.toLowerCase().equals("start all")) {
                         processManager.startDBService();
                         processManager.startFrontendService();
@@ -49,9 +57,6 @@ public class Main {
                         server.stop();
                         processManager.stopAllProcess();
                         System.exit(0);
-                    } else if (command.toLowerCase().equals("front log")) {
-                        System.out.println(processManager.getOutput());
-
                     }
                 } catch (IOException e) {
                     logger.log(Level.SEVERE, e.getMessage());

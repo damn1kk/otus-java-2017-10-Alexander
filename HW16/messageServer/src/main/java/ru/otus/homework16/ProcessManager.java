@@ -19,11 +19,22 @@ public class ProcessManager {
         allProcess.add(pr);
     }
 
+    public void startDBService(String processName) throws IOException{
+        ProcessRunner pr = new ProcessRunnerImpl();
+        pr.start(DBSERVICE_START_COMMAND + " " + processName);
+        allProcess.add(pr);
+    }
+
     public void startFrontendService() throws IOException{
         ProcessRunner pr = new ProcessRunnerImpl();
         pr.start(FRONTENDSERVICE_START_COMMAND);
         allProcess.add(pr);
+    }
 
+    public void startFrontendService(int port) throws IOException{
+        ProcessRunner pr = new ProcessRunnerImpl();
+        pr.start(FRONTENDSERVICE_START_COMMAND + " " + port);
+        allProcess.add(pr);
     }
 
     public void stopAllProcess(){
@@ -33,7 +44,7 @@ public class ProcessManager {
     }
 
     public void stopProcess(String processName){
-
+        //todo: think how to do it
     }
 
     public String getOutput(){
