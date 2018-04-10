@@ -4,6 +4,7 @@
 
 Доступные консольные команды для messageServer:
 
+"show clients" отображает сервисы, запущенные с помощью messageServer;
 "start dbservice" или "start db" для запуска DBService со стандратным именем;  
 "start dbservice name" или "start db name" для запуска DBService с именем "name";  
 "start frontendservice" или "start front" для запуска frontendService со стандартным портом(9999);  
